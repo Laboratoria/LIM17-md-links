@@ -1,6 +1,17 @@
 {
-  "name": "md-links",
+  "name": "md-links-tata",
   "version": "0.1.0",
+  "description": "md-links un proyecto de extracción de links en formato md",
+  "keywords": [
+    "javascript",
+    "jest"
+  ],
+  "license": "MIT",
+  "author": "Linda Gómez Olea <lindagomez96@outlook.es>",
+  "main": "src/md-links.js",
+  "devDependencies": {
+    "jest": "^28.1.0"
+  },
   "engines": {
     "node": ">=14.x"
   }
