@@ -5,8 +5,12 @@ const mdlinks = () => {
 };
 
 //Función para determinar si la ruta es absoluta o no
-const determinateAbsolutePath = (pathRoot)=> {
-  return path.isAbsolute(pathRoot);
-};
+const determinateAbsolutePath = (pathRoot)=> path.isAbsolute(pathRoot);
+console.log(determinateAbsolutePath('dir1/arc1. fil'));
 
-console.log(determinateAbsolutePath('//server'));
+//Función para convertir ruta en absoluta
+const createAbsolutePath = (pathRoot)=> path.resolve(pathRoot);
+console.log(createAbsolutePath('dir1/arc1.fil'));
+
+
+
