@@ -11,6 +11,12 @@ const checkPathIsDirectory = (inputPath) => fs.statSync(inputPath).isDirectory()
 
 const getExtension = (inputPath) => path.extname(inputPath);
 
-module.exports = () => {
-    checkPathAbsolute, checkPathExists, convertToAbsolute, checkPathIsDirectory, getExtension
-}
+const routeExists = (route) => fs.existsSync(route);
+module.exports = {
+    checkPathAbsolute,
+     checkPathExists, 
+     convertToAbsolute,
+      checkPathIsDirectory, 
+      getExtension,
+      routeExists,
+};

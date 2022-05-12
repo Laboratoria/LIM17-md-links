@@ -1,2 +1,2 @@
-//traer las funciones de indexs
+const index = require('./index');
 
