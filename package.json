@@ -1,10 +1,13 @@
 {
   "name": "md-links-tata",
   "version": "0.1.0",
+  "description": "md-links un proyecto de extracción de links en formato md",
+  "devDependencies": {
+    "jest": "^28.1.0"
+  },
   "engines": {
     "node": ">=14.x"
   },
-  "description": "Extracción de links de archivos markdown",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -23,6 +26,6 @@
     "markdown",
     "links"
   ],
-  "author": "Linda Gómez Olea",
+  "author": "Linda Gómez Olea <lindagomez96@outlook.es>",
   "license": "MIT"
 }
