@@ -1,7 +1,28 @@
 {
-  "name": "md-links",
+  "name": "md-links-tata",
   "version": "0.1.0",
   "engines": {
     "node": ">=14.x"
-  }
+  },
+  "description": "Extracción de links de archivos markdown",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "dependencies": {
+    "eslint": "^8.15.0",
+    "jest": "^28.1.0",
+    "test": "^0.6.0"
+  },
+  "keywords": [
+    "node",
+    "jest",
+    "markdown",
+    "links"
+  ],
+  "author": "Linda Gómez Olea",
+  "license": "MIT"
 }
