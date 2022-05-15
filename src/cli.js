@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-//const {md-Links} = require('./md-Links');
+const { mdLinks } = require('./md-Links')
 
-//const [, , ...args] = process.argv;
-
-
-let inputPath = process.argv[2];
-
-console.log(inputPath);
+const inputPath = process.argv[2]
+if (inputPath) {
+  mdLinks(inputPath)
+} else {
+  console.log('Error.Ruta incorrecta, ingrese la ruta nuevamente')
+}

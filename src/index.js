@@ -1,22 +1,23 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs')
+const path = require('path')
 
-const checkPathAbsolute = (inputPath) => path.isAbsolute(inputPath);
+const files = fs.readdirSync('./exampleFile')
+console.log(files)
 
-const checkPathExists = (inputPath) => fs.existsSync(inputPath);
+const checkPathAbsolute = (inputPath) => path.isAbsolute(inputPath)
 
-const convertToAbsolute = (inputPath) => path.resolve(inputPath);
+const checkPathExists = (inputPath) => fs.existsSync(inputPath)
 
-const checkPathIsDirectory = (inputPath) => fs.statSync(inputPath).isDirectory();
+const convertToAbsolute = (inputPath) => path.resolve(inputPath)
 
-const getExtension = (inputPath) => path.extname(inputPath);
+const checkPathIsDirectory = (inputPath) => fs.statSync(inputPath).isDirectory()
 
-const routeExists = (route) => fs.existsSync(route);
+const getExtension = (inputPath) => path.extname(inputPath)
+
 module.exports = {
-    checkPathAbsolute,
-     checkPathExists, 
-     convertToAbsolute,
-      checkPathIsDirectory, 
-      getExtension,
-      routeExists,
-};
+  checkPathAbsolute,
+  checkPathExists,
+  convertToAbsolute,
+  checkPathIsDirectory,
+  getExtension
+}
