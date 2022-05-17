@@ -1,19 +1,13 @@
-import fs from 'fs';
-import path from 'path';
-const mdlinks = () => {};
+import { determinateAbsolutePath, createAbsolutePath, validatePath} from './api.js'
+const mdlinks = (route) => {
+validatePath(route)=== true ? console.log('Ruta existente') : console.log('Ruta no existente. Ingrese otra ruta.');
+determinateAbsolutePath(route)=== true ? console.log('La ruta es absoluta') : console.log('La ruta es relativa... Convirtiendo');
+console.log('la ruta relativa es : ' + createAbsolutePath(route));
+};
 
-const ruta = 'archivosdeprueba';
-//Función para determinar si la ruta es absoluta o no
-const determinateAbsolutePath = (pathRoot)=> path.isAbsolute(pathRoot);
-console.log(determinateAbsolutePath(ruta));
+mdlinks('archivosdeprueba');
 
-//Función para convertir ruta en absoluta
-const createAbsolutePath = (pathRoot)=> path.resolve(pathRoot);
-console.log(createAbsolutePath(ruta));
 
-//Función para comprovar si la ruta existe o no
-const validatePath = (pathRoot) => fs.existsSync(pathRoot);
-console.log(validatePath(ruta));
 
 
 
