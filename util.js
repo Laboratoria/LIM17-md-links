@@ -1,3 +1,5 @@
 import path from 'path';
 
-export const getArgPathAbsolute = (argPath) => path.isAbsolute(argPath) ? argPath : path.resolve(argPath);
+// Convertir una ruta relativa en absoluta
+export const getArgPathAbsolute = argPath =>
+	path.isAbsolute(argPath) ? argPath : path.resolve(argPath);
