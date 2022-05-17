@@ -1,1 +1,52 @@
-<mxfile host="app.diagrams.net" modified="2022-05-16T14:52:22.169Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" version="18.0.6" etag="MmW9VFgNoj0GMcNs5Hg3" type="github"><diagram id="-pcltwVOcNZUaTyx6lK4">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-05-17T15:08:36.520Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36" etag="RhUpkArgZUlaQua6UGfX" version="18.0.6" type="github">
+  <diagram id="-pcltwVOcNZUaTyx6lK4" name="Page-1">
+    <mxGraphModel dx="923" dy="456" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7eJJYWnoZntR9IjGoTKC-1" target="7eJJYWnoZntR9IjGoTKC-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-1" value="" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="50" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7eJJYWnoZntR9IjGoTKC-2" target="7eJJYWnoZntR9IjGoTKC-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-2" value="INGRESA PATH" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-9" value="si" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7eJJYWnoZntR9IjGoTKC-4" target="7eJJYWnoZntR9IjGoTKC-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-11" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7eJJYWnoZntR9IjGoTKC-4" target="7eJJYWnoZntR9IjGoTKC-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-4" value="¿es absoluta?" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="350" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="7eJJYWnoZntR9IjGoTKC-6" target="7eJJYWnoZntR9IjGoTKC-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-6" value="Se convierte a absoluta" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-13" value="si" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7eJJYWnoZntR9IjGoTKC-8" target="7eJJYWnoZntR9IjGoTKC-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-15" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7eJJYWnoZntR9IjGoTKC-8" target="7eJJYWnoZntR9IjGoTKC-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-8" value="La ruta es existente?" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="510" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-12" value="La ruta es existente?" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="670" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7eJJYWnoZntR9IjGoTKC-14" value="muestra error en consola" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="890" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
