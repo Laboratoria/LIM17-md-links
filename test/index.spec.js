@@ -1,25 +1,26 @@
-const index = require('../index');
+
+const index = require('../utils');
 console.log(index);
 
 
 describe('pathTransformtoAbs', () => {
 
   it('convierte en rutas absolutas las rutas relativas que ingresen', () => {
-    const expected = 'C:\\Users\\USER\\Desktop\\laboratoria\\LIM017-md-links\\src\\md-links.md';
-    const noExpected = 'src/md-links.md';
+    const expected = 'C:\\Users\\USER\\Desktop\\laboratoria\\LIM017-md-links\\index.js';
+    const relativePath = '../index.js';
 
 
     const pathTransformAbs = (expected) => {
       if( expected) {
-      return 'C:\\Users\\USER\\Desktop\\laboratoria\\LIM017-md-links\\src\\md-links.md';
+      return  'C:\\Users\\USER\\Desktop\\laboratoria\\LIM017-md-links\\index.js';
         } else {
-          return 'src/md-links.md';
+          return '../index.js'+ ' Es una ruta relativa.';
         }
-
     };
-    
-    console.log('FIX ME!');
-    expect(pathTransformAbs(expected)).toEqual(expected);
+    expect(pathTransformAbs(relativePath)).toEqual(expected);
+
   });
 
 });
+
+
