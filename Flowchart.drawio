@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-05-18T16:45:02.633Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36" etag="nIOdbI6FglS2Xg0eCui_" version="18.0.6" type="github">
+<mxfile host="app.diagrams.net" modified="2022-05-18T16:47:23.950Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36" etag="uENGobVdDCL5sY6iAAPP" version="18.0.6" type="github">
   <diagram id="-pcltwVOcNZUaTyx6lK4" name="Page-1">
-    <mxGraphModel dx="5190" dy="2735" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+    <mxGraphModel dx="2307" dy="1216" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -141,6 +141,9 @@
         </mxCell>
         <mxCell id="UzcHI-qojIcEUNtMun71-27" value="es validate?" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="1880" y="560" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UzcHI-qojIcEUNtMun71-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="UzcHI-qojIcEUNtMun71-31" target="UzcHI-qojIcEUNtMun71-49">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="UzcHI-qojIcEUNtMun71-31" value="recorrer el array y lanzar la cantidad de links unicos que hay" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="2020" y="570" width="120" height="60" as="geometry" />
