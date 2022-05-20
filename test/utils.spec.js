@@ -4,25 +4,25 @@ const { pathTransformAbs ,isFile,
    isDirectory}= require('../utils.js');
 
 
-const expected = 'C:\\Users\\USER\\Desktop\\laboratoria\\LIM017-md-links\\index.js';
+const expected = 'C:\\Users\\USER\\Desktop\\laboratoria\\index.js';
 const relativePath = '../index.js';
-const file = './utils.js';
-const folder = './files';
+const file = '../utils.js';
+const folder = '../files';
 
 
 describe('pathTransformtoAbs', () => {
   it('convierte en rutas absolutas las rutas relativas que ingresen', () => {
-    setTimeout(() => {
+    
       expect(pathTransformAbs(relativePath)).toEqual(expected);
-    }, 600)
+    
   });
 });
 
 describe('isFile', () => {
   it('devuelve un booleano al validar la ruta', () => {
-    setTimeout(()=>{
+    console.log(typeof isFile, 'estamos en isfile');
       expect(isFile(file)).toBe(true);
-    }, 600)
+  
       
   });
 });
