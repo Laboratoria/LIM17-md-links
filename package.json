@@ -2,7 +2,7 @@
   "name": "md-links-jossf",
   "version": "1.0.0",
   "description": "Analiza archivos markdown para comprobar los links que funcionan y no correctamente",
-  "main": "./src/mdLinks.js",
+  "main": "index.js",
   "bin": {
     "md-Links": ".src/cli.js"
   },
@@ -22,13 +22,14 @@
     "links"
   ],
   "author": "Joseline Franco <jossel78@gmail.com>",
-  "license": "MIT",
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JossFranco/LIM017-md-links.git"
   },
   "dependencies": {
     "chalk": "^5.0.1",
+    "jest": "^28.1.0",
     "node-fetch": "^3.2.4",
     "npm-cli": "^0.1.0"
   },

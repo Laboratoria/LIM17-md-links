@@ -1,23 +1,49 @@
+/* const {
+  checkAbsolute,
+  // isDirectory,
+  convertToAbsolute
+  // checkPathIsDirectory,
+  // getExtension
+} = require('./index.js')
+
+const mdLinks = (path) => {
+  while (!checkAbsolute(path)) {
+    console.log('La ruta ingresada es relativa:', path)
+    const path = convertToAbsolute(path)
+    console.log('La ruta ha sido convertida en absoluta:', path)
+  }
+  return path
+}
+module.exports = { mdLinks }
+
+/* const checkAbsolute = (inputPath) => {
+  if (path.isAbsolute(inputPath)) {
+    return inputPath
+  } else {
+    return path.resolve(inputPath)
+  }
+}
+
+const isDirectory = (inputPath) => {
+  isFile = fs.statSync(inputPath)
+  return isFile.isDirectory()
+}
+
+*/
+// };
 const fs = require('fs')
 const path = require('path')
 
-const files = fs.readdirSync('./exampleFile')
-console.log(files)
+const isAbsolute = (inputPath) => path.isAbsolute(inputPath) ? inputPath : path.resolve(inputPath)
 
-const checkPathAbsolute = (inputPath) => path.isAbsolute(inputPath)
-
-const checkPathExists = (inputPath) => fs.existsSync(inputPath)
+const pathExists = (inputPath) => fs.existsSync(isAbsolute(inputPath))
 
 const convertToAbsolute = (inputPath) => path.resolve(inputPath)
 
-const checkPathIsDirectory = (inputPath) => fs.statSync(inputPath).isDirectory()
+const checkIsDirectory = (inputPath) => fs.statSync(inputPath).isDirectory()
 
 const getExtension = (inputPath) => path.extname(inputPath)
 
 module.exports = {
-  checkPathAbsolute,
-  checkPathExists,
-  convertToAbsolute,
-  checkPathIsDirectory,
-  getExtension
+  isAbsolute, pathExists, convertToAbsolute, checkIsDirectory, getExtension
 }
