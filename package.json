@@ -16,8 +16,10 @@
     "test": "jest --coverage"
   },
   "dependencies": {
+    "chalk": "^5.0.1",
     "eslint": "^8.15.0",
     "jest": "^28.1.0",
+    "marked": "^4.0.16",
     "test": "^0.6.0"
   },
   "keywords": [
