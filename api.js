@@ -41,7 +41,7 @@ export const findMdFile =(pathRoot)=> path.extname(pathRoot)=== '.md';
 export const readaPathDirectory= (pathRoot)=> fs.readdirSync(pathRoot);
 
 //recursividad / para obtener los archivos MD de cada directorio y acumularnos en un array (lee las carpetas de cada directorio)
-export const getFilesofDirectory = (pathRoot)=>{
+export const getFilesMdofDirectory = (pathRoot)=>{
 let arrayFiles= [];
 readaPathDirectory(pathRoot).forEach(e => {
 const newPathDirectory = path.join(pathRoot, e);
