@@ -29,6 +29,13 @@ export const ifIsDirectory = (pathRoot)=> {
 //MOSTRAR EL CONTENIDO DE UN ARCHIVO
 export const readaPathFile= (pathRoot)=> fs.readFileSync(pathRoot).toString();
 
+//mostrar contenido de un archivo MD
+export const getContentMdFile = (pathRoot)=> {
+return findMdFile(pathRoot)? readaPathFile(pathRoot): console.log('el archivo no es .md');
+}
+
+
+
 // encontrar archivos con extensión de .md
 export const findMdFile =(pathRoot)=> path.extname(pathRoot)=== '.md';
 
@@ -41,14 +48,18 @@ let arrayFiles= [];
 readaPathDirectory(pathRoot).forEach(e => {
 const newPathDirectory = path.join(pathRoot, e);
 if(ifIsFile(newPathDirectory)){
-    arrayFiles.push(e);
+    if(findMdFile(newPathDirectory)){
+        arrayFiles.push(e)
+    }
 }else {
     return arrayFiles = arrayFiles.concat(readaPathDirectory(newPathDirectory))
 };
 }
 )
 return arrayFiles;
-}
+};
+
+
 //     return path.join(pathRoot,e)
     // const arrayFiles= [path.join(pathRoot,e)]
     // return arrayFiles;
