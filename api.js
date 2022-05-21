@@ -14,27 +14,43 @@ export const createAbsolutePath = (pathRoot)=> path.resolve(pathRoot);
 export const validatePath = (pathRoot) => fs.existsSync(pathRoot);
  
 //Funciones para saber si el path es directorio o file
-
+//saber si es file
 export const ifIsFile = (pathRoot)=> {
     const statsObj = fs.statSync(pathRoot);
     return statsObj.isFile();
 }
-
+//saber si es directorio
 export const ifIsDirectory = (pathRoot)=> {
     const statsObj = fs.statSync(pathRoot);
     return statsObj.isDirectory();
 }
 
-export const readaPathFile= (pathRoot)=> console.log(fs.readFileSync(pathRoot));
+//leer un archivo y puede mostrar resultado si se eboca un console.log
+export const readaPathFile= (pathRoot)=> fs.readFileSync(pathRoot).toString();
 
-export const readaPathDirectory= (pathRoot)=> {
-    pathRoot.forEach(() => {
-        fs.readdir(pathRoot, function (err, archivos) {
-            if (err) {
-            onError(err);
-            return;
-            }
-            console.log(archivos);
-            });;
-    })
+//leer un directorio (devuelve el contenido sin identifiacr si hay o no carpetas dentro)
+export const readaPathDirectory= (pathRoot)=> fs.readdirSync(pathRoot);
+
+//recursividad / para obtener los archivos de cada directorio y acumularnos en un array (lee las carpetas de cada directorio)
+export const getFilesofDirectory = (pathRoot)=>{
+let arrayFiles= [];
+readaPathDirectory(pathRoot).forEach(e => {
+const newPathDirectory = path.join(pathRoot, e);
+if(ifIsFile(newPathDirectory)){
+    arrayFiles.push(e);
+}else {
+    return arrayFiles = arrayFiles.concat(readaPathDirectory(newPathDirectory))
+};
 }
+)
+return arrayFiles;
+}
+//     return path.join(pathRoot,e)
+    // const arrayFiles= [path.join(pathRoot,e)]
+    // return arrayFiles;
+
+// filesnames.forEach(file=> {
+//         ;
+//         return ifIsDirectory(newPathDirectory)=== true ? console.log(readaPathDirectory(newPathDirectory)): console.log(filesnames);
+// }
+
