@@ -5,9 +5,13 @@ determinateAbsolutePath(route)=== true ? console.log('La ruta es absoluta') : co
 console.log('la ruta relativa es : ' + createAbsolutePath(route));
 if(ifIsDirectory(route)=== true){
     console.log(getFilesMdofDirectory(route));
-}else{
-    console.log(getContentMdFile(route));
 }
+if(ifIsFile(route)){
+    getContentMdFile(route)
+}
+ //else{
+//     console.log(getContentMdFile(route));
+// }
 // if(ifIsFile(route)=== true){
 //     readaPathFile(route)
 // }
