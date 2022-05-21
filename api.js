@@ -19,14 +19,18 @@ export const ifIsFile = (pathRoot)=> {
     const statsObj = fs.statSync(pathRoot);
     return statsObj.isFile();
 }
+
 //saber si es directorio
 export const ifIsDirectory = (pathRoot)=> {
     const statsObj = fs.statSync(pathRoot);
     return statsObj.isDirectory();
 }
 
-//leer un archivo y puede mostrar resultado si se eboca un console.log
+//MOSTRAR EL CONTENIDO DE UN ARCHIVO
 export const readaPathFile= (pathRoot)=> fs.readFileSync(pathRoot).toString();
+
+// encontrar archivos con extensión de .md
+export const findMdFile =(pathRoot)=> path.extname(pathRoot)=== '.md';
 
 //leer un directorio (devuelve el contenido sin identifiacr si hay o no carpetas dentro)
 export const readaPathDirectory= (pathRoot)=> fs.readdirSync(pathRoot);
@@ -53,4 +57,5 @@ return arrayFiles;
 //         ;
 //         return ifIsDirectory(newPathDirectory)=== true ? console.log(readaPathDirectory(newPathDirectory)): console.log(filesnames);
 // }
+
 

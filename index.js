@@ -13,7 +13,7 @@ if(ifIsDirectory(route)=== true){
 // }
 };
 
-mdlinks('README.md');
+mdlinks('archivosdeprueba');
 
 //create second branch
 
