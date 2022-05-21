@@ -34,15 +34,13 @@ export const getContentMdFile = (pathRoot)=> {
 return findMdFile(pathRoot)? readaPathFile(pathRoot): console.log('el archivo no es .md');
 }
 
-
-
 // encontrar archivos con extensión de .md
 export const findMdFile =(pathRoot)=> path.extname(pathRoot)=== '.md';
 
 //leer un directorio (devuelve el contenido sin identifiacr si hay o no carpetas dentro)
 export const readaPathDirectory= (pathRoot)=> fs.readdirSync(pathRoot);
 
-//recursividad / para obtener los archivos de cada directorio y acumularnos en un array (lee las carpetas de cada directorio)
+//recursividad / para obtener los archivos MD de cada directorio y acumularnos en un array (lee las carpetas de cada directorio)
 export const getFilesofDirectory = (pathRoot)=>{
 let arrayFiles= [];
 readaPathDirectory(pathRoot).forEach(e => {
