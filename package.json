@@ -1,7 +1,21 @@
 {
   "name": "md-links",
   "version": "0.1.0",
+  "type": "module",
   "engines": {
     "node": ">=14.x"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.17.12",
+    "eslint": "^8.15.0",
+    "jest": "^28.1.0"
+  },
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    }
   }
 }
