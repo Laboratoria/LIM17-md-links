@@ -1,4 +1,4 @@
-import { determinateAbsolutePath, createAbsolutePath,validatePath, ifIsFile, ifIsDirectory,getContentMdFile} from '../api.js'
+import { determinateAbsolutePath, createAbsolutePath,validatePath, ifIsFile, ifIsDirectory,getContentMdFile, findMdFile,getFilesMdofDirectory} from '../api.js'
 
 const route = './archivosdeprueba';
 const absoluteRoute= 'C:\\LABORATORIA PROYECTOS\\P4-MDLINKS\\LIM017-md-links\\archivosdeprueba';
@@ -40,7 +40,24 @@ describe('ifIsDirectory', () => {
 
 describe('getContentMdFile', () => {
   it('should be return el archivo no es .md if it isnt .md', () => {
-    expect(getContentMdFile('exampleFile.txt')).toBe(true);
+    expect(getContentMdFile('exampleFile.txt')).toBe(console.log('el archivo no es .md'));
   });
 });
 
+describe('findMdFile', () => {
+  it('should be return true if the file is .md', () => {
+    expect(findMdFile('exampleFile.txt')).toBe(false);
+  });
+});
+
+// describe('getFilesMdofDirectory', () => {
+//   it('should be return an array', () => {
+//     expect(getFilesMdofDirectory()).toBe(Array);
+//   });
+  // it('should be return true if the file is .md', () => {
+  //   expect(findMdFile('exampleFile.txt')).toBe(false);
+  // });
+  // it('should be return true if the file is .md', () => {
+  //   expect(findMdFile('exampleFile.txt')).toBe(false);
+  // });
+// });
