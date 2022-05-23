@@ -1,1 +1,1 @@
-import {mdlinks} from '../index.js'
+// import {mdlinks} from '../index.js'

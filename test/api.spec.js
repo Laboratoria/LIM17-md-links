@@ -1,4 +1,4 @@
-import { determinateAbsolutePath, createAbsolutePath,validatePath, ifIsFile, ifIsDirectory,getContentMdFile, findMdFile,getFilesMdofDirectory} from '../api.js'
+import { readaPathDirectory,determinateAbsolutePath, createAbsolutePath,validatePath, ifIsFile, ifIsDirectory,getContentMdFile, findMdFile,getFilesMdofDirectory} from '../api.js'
 
 const route = './archivosdeprueba';
 const absoluteRoute= 'C:\\LABORATORIA PROYECTOS\\P4-MDLINKS\\LIM017-md-links\\archivosdeprueba';
@@ -50,14 +50,15 @@ describe('findMdFile', () => {
   });
 });
 
-// describe('getFilesMdofDirectory', () => {
-//   it('should be return an array', () => {
-//     expect(getFilesMdofDirectory()).toBe(Array);
-//   });
-  // it('should be return true if the file is .md', () => {
-  //   expect(findMdFile('exampleFile.txt')).toBe(false);
+describe('getFilesMdofDirectory', () => {
+  it('should be return an array with files and directories names', () => {
+    expect(readaPathDirectory(route)).toEqual(['carpetadeprueba' , 'exampleone.txt' , 'exampletwo.md']);
+  });
+  // it('should be traverse the array and return the md files', () => {
+  //   const newPathDirectory = 'C:\LABORATORIA PROYECTOS\P4-MDLINKS\LIM017-md-links\archivosdeprueba\exampleone.md'
+  //   expect(findMdFile(newPathDirectory)).toBe(['example.md']);
   // });
   // it('should be return true if the file is .md', () => {
   //   expect(findMdFile('exampleFile.txt')).toBe(false);
   // });
-// });
+});
