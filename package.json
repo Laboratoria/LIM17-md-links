@@ -2,7 +2,7 @@
   "name": "md-links-jossf",
   "version": "1.0.0",
   "description": "Analiza archivos markdown para comprobar los links que funcionan y no correctamente",
-  "main": "./src/mdLinks.js",
+  "main": "index.js",
   "bin": {
     "md-Links": ".src/cli.js"
   },
@@ -22,18 +22,28 @@
     "links"
   ],
   "author": "Joseline Franco <jossel78@gmail.com>",
-  "license": "MIT",
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JossFranco/LIM017-md-links.git"
   },
   "dependencies": {
     "chalk": "^5.0.1",
-    "node-fetch": "^3.2.4"
+    "jest": "^28.1.0",
+    "node-fetch": "^3.2.4",
+    "npm-cli": "^0.1.0"
   },
   "bugs": {
     "url": "https://github.com/JossFranco/LIM017-md-links/issues"
   },
   "homepage": "https://github.com/JossFranco/LIM017-md-links#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
+    "eslint": "^8.15.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.0",
+    "eslint-plugin-promise": "^6.0.0"
+  }
 }

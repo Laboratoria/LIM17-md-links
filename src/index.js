@@ -1,22 +1,16 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs')
+const path = require('path')
 
-const checkPathAbsolute = (inputPath) => path.isAbsolute(inputPath);
+const isAbsolute = (inputPath) => path.isAbsolute(inputPath) ? inputPath : path.resolve(inputPath)
 
-const checkPathExists = (inputPath) => fs.existsSync(inputPath);
+const pathExists = (inputPath) => fs.existsSync(isAbsolute(inputPath))
 
-const convertToAbsolute = (inputPath) => path.resolve(inputPath);
+const convertToAbsolute = (inputPath) => path.resolve(inputPath)
 
-const checkPathIsDirectory = (inputPath) => fs.statSync(inputPath).isDirectory();
+const checkIsDirectory = (inputPath) => fs.statSync(inputPath).isDirectory()
 
-const getExtension = (inputPath) => path.extname(inputPath);
+const getExtension = (inputPath) => path.extname(inputPath)
 
-const routeExists = (route) => fs.existsSync(route);
 module.exports = {
-    checkPathAbsolute,
-     checkPathExists, 
-     convertToAbsolute,
-      checkPathIsDirectory, 
-      getExtension,
-      routeExists,
-};
+  isAbsolute, pathExists, convertToAbsolute, checkIsDirectory, getExtension
+}

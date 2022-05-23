@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 
-//const {md-Links} = require('./md-Links');
+// const figlet = require('figlet');
 
-//const [, , ...args] = process.argv;
 
+
+/* const {mdLinks} = require('./md-links.js');
 
 let inputPath = process.argv[2];
-
-console.log(inputPath);
+if (inputPath){
+    console.log(mdLinks(inputPath));
+}
+else{
+    console.log('Error: Debe ingresar una ruta. Vuelva a intentarlo')
+}*/
