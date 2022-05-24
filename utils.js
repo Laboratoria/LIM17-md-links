@@ -1,6 +1,6 @@
 const path = require('path') // devuelve <booleano>
 const fs = require('fs') 
-const marked = require('marked'); // undefined
+const marked = require ('marked'); // undefined
 
 const existenceOfaRoute = (routes) => fs.existsSync(routes);
 
@@ -47,14 +47,40 @@ const validateFileMd = (routes) => {
     return filterByMdFiles;
     };
 
+/*  ---funcion para extraer links--- */
+const linksIntoMdFiles = (routes) => {
+    const renderer = new marked.Renderer();
+    let saveRoutesIntoArray = [];
+    validateFileMd(routes).forEach((file) => {
 
+        const readingMdFile = searchFiles(file);
 
-// console.log(validateFileMd('./files'));
+        renderer.link = (href, title, text) => {
+
+            let objWithLinks = {
+                href: href,
+                text: text,
+                file: file,
+            }
+            saveRoutesIntoArray.push(objWithLinks);
+        }
+
+        marked.use({ renderer }) //uso mis valores renderizados, los que configuré
+        marked.parse(readingMdFile)  //uso mi variable que ejecuta la lectura en el parseado
+
+    });
+    return saveRoutesIntoArray;
+};
+
+//console.log(validateFileMd('./files'));
+
+//console.log(linksIntoMdFiles('C:/Users/USER/Desktop/laboratoria/LIM017-md-links/files'));
+
 
 // console.log(readDirectory('C:/Users/USER/Desktop/laboratoria/LIM017-md-links/utils.js'));
 // console.log(isFile('./utils.js'));
 // console.log(isDirectory('./files'));
-// console.log(pathTransformAbs('./archivo2.md'))
+//console.log(pathTransformAbs('archivo2.md'))
 
 
 
@@ -62,4 +88,4 @@ const validateFileMd = (routes) => {
 
 
 module.exports = {existenceOfaRoute, pathTransformAbs, pathExtension, searchFiles, 
-readDirectory, isFile, isDirectory, validateFileMd};
+readDirectory, isFile, isDirectory, validateFileMd, linksIntoMdFiles};
