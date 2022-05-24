@@ -26,14 +26,13 @@ export const ifIsDirectory = (pathRoot) => {
 // MOSTRAR EL CONTENIDO DE UN ARCHIVO
 export const readaPathFile = (pathRoot) => {
   const result = fs.readFileSync(pathRoot).toString()
-  return result === '' ? console.log('el archivo está vacío') : console.log(getLinksFileMD(result))
+  return result.length === 0 ? console.log('el archivo está vacío') : console.log(getLinksFileMD(result))
 }
 
 // mostrar contenido de un archivo MD
 export const getContentMdFile = (pathRoot) => {
   return findMdFile(pathRoot) ? readaPathFile(pathRoot) : console.log('el archivo no es .md')
 }
-
 // encontrar archivos con extensión de .md
 export const findMdFile = (pathRoot) => path.extname(pathRoot) === '.md'
 
@@ -57,7 +56,7 @@ export const getFilesMdofDirectory = (pathRoot) => {
   return arrayFiles
 }
 
-const getLinksFileMD = (content) => {
+export const getLinksFileMD = (content) => {
   const regExLink = /\[([^\[]+)\]\(http?(.*)\)/gm
   // const regExLink = /(?:(?:https|http?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm
   const arrayLinks = content.match(regExLink)
