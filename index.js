@@ -7,9 +7,11 @@ const api_MDlinks = (path) => {
       reject("The path is invalid :( ");
     }
     else{
-      resolve("The path is valid :) ");
-      const alsolutePath = opeApi.pathIsAbsolute(path);
-      console.log(alsolutePath);
+      // resolve("The path is valid :) ");
+      const absolutePath = opeApi.pathIsAbsolute(path);
+      const filterDirectoryByMdFile = opeApi.travelByDirectoryAndFile(absolutePath);
+
+      console.log(filterDirectoryByMdFile);
     }
   });
 }
