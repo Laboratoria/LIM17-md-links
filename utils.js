@@ -48,7 +48,7 @@ const validateFileMd = (routes) => {
     };
 
 /*  ---funcion para extraer links--- */
-const links = (routes) => {
+const linksIntoMdFiles = (routes) => {
     const renderer = new marked.Renderer();
     let saveRoutesIntoArray = [];
     validateFileMd(routes).forEach((file) => {
@@ -72,15 +72,15 @@ const links = (routes) => {
     return saveRoutesIntoArray;
 };
 
-console.log(validateFileMd('./files'));
-// console.log(links('./files'));
- console.log(links('C:/Users/USER/Desktop/laboratoria/LIM017-md-links/files'));
+//console.log(validateFileMd('./files'));
+
+//console.log(linksIntoMdFiles('C:/Users/USER/Desktop/laboratoria/LIM017-md-links/files'));
 
 
 // console.log(readDirectory('C:/Users/USER/Desktop/laboratoria/LIM017-md-links/utils.js'));
 // console.log(isFile('./utils.js'));
 // console.log(isDirectory('./files'));
-// console.log(pathTransformAbs('./files'))
+//console.log(pathTransformAbs('archivo2.md'))
 
 
 
@@ -88,4 +88,4 @@ console.log(validateFileMd('./files'));
 
 
 module.exports = {existenceOfaRoute, pathTransformAbs, pathExtension, searchFiles, 
-readDirectory, isFile, isDirectory, validateFileMd};
+readDirectory, isFile, isDirectory, validateFileMd, linksIntoMdFiles};
