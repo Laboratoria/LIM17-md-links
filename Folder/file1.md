@@ -8,7 +8,7 @@ consideración en peculiaridades del lenguaje, convenciones y buenas prácticas.
 Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en tu proyecto. Piensa en eso al decidir tu estrategia de trabajo.
 
 ### JavaScript
-
+'[Arreglos](https://curriculum.laboratoria.la/es/topics/javascript/04-arrays)'
 - [ ] **Diferenciar entre tipos de datos primitivos y no primitivos**
 
 - [ ] **Arrays (arreglos)**
@@ -23,3 +23,4 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
   * [Array.prototype.filter() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
   * [Array.prototype.reduce() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 </p></details>
+'[Arreglos](https://curriculum.laboratoria.la/es/topics/javascript/04-arrays)'
