@@ -1,10 +1,20 @@
-console.log('Hola Mundo, Estoy en proceso de creacion :)');
+const { }= require('./index.js')
 
-// función (mdLinks).
-// mdLinks(path, options)
-// Argumentos
-//   path: Ruta absoluta o relativa al archivo o directorio. Si la ruta pasada es relativa, debe resolverse como relativa al directorio desde donde se invoca node - current working directory).
+//Función Principal
 
-//   options: Un objeto con únicamente la siguiente propiedad:
+const mdLinks = (inputRoute, options) =>{
 
-//   validate: Booleano que determina si se desea validar los links encontrados.
+
+
+
+
+//Si esta -- validate, se desea validar
+// href: URL encontrada.
+// text: Texto que aparecía dentro del link (<a>).
+// file: Ruta del archivo donde se encontró el link.
+// status: Código de respuesta HTTP.
+// ok: Mensaje fail en caso de fallo u ok en caso de éxito.
+};
+
+
+  module.exports = {mdLinks};
