@@ -30,8 +30,29 @@ if (isFolder(inputRoute) === false && path.extname(inputRoute) === ".md") {
   return arrCotainer;
 }
 console.log(getFileFolder(inputRoute))
+// const arrLienks = fs.readFileSync(inputRoute, 'utf-8');
+// console.log(arrLienks);
 
+const getLinks = (inputRoute) => {
+    const linkExpReg = /\[([\w\s\d.()]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/gm;
+    const urlExpReg = /\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/gm;
+    const textExpReg = /\[[\w\s\d.()]+\]/;
+    const arrLinks = fs.readFileSync(inputRoute, 'utf-8').match(linkExpReg);
+    return arrLinks.map((links) => {
+      const hrefLinks = links.match(urlExpReg).join().slice(1, -1);
+      const textLinks = links.match(textExpReg).join().slice(1, -1);
 
+      const dataLinks = {
+        href: hrefLinks,//href: URL encontrada.
+        text: textLinks,// text: Texto que aparecía dentro del link
+        file: absolutePath(inputRoute)// file: Ruta del archivo donde se encontró el link.
+      }
+      return dataLinks
+    });
+  };
+  
+  console.log(getLinks(inputRoute));
+  
 // console.log(getFileFolder(inputRoute));
 // const arrFilesMd = getFileFolder(inputRoute);
 // arrFilesMd.map(file=> fs.readFileSync(file, 'utf8'));
@@ -41,4 +62,4 @@ console.log(getFileFolder(inputRoute))
 // C:/Users/USER/Desktop/LIM17-md-links/Folder
 //Folder/file1.md
 //Folder\Folder1\file2.md
-
+//Folder/file1.md
