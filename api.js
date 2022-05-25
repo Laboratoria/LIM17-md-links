@@ -26,13 +26,13 @@ export const ifIsDirectory = (pathRoot) => {
 // MOSTRAR EL CONTENIDO DE UN ARCHIVO
 export const readaPathFile = (pathRoot) => {
   const result = fs.readFileSync(pathRoot).toString()
-  return result.length === 0 ? console.log('el archivo está vacío') : console.log(getLinksFileMD(result))
+  return result.length === 0 ? [] : getLinksFileMD(result, pathRoot)
 }
 
 // mostrar contenido de un archivo MD
-export const getContentMdFile = (pathRoot) => {
-  return findMdFile(pathRoot) ? readaPathFile(pathRoot) : console.log('el archivo no es .md')
-}
+// export const getContentMdFile = (pathRoot) => {
+//   return findMdFile(pathRoot) ? readaPathFile(pathRoot) : console.log('el archivo no es .md')
+// }
 // encontrar archivos con extensión de .md
 export const findMdFile = (pathRoot) => path.extname(pathRoot) === '.md'
 
@@ -56,9 +56,26 @@ export const getFilesMdofDirectory = (pathRoot) => {
   return arrayFiles
 }
 
-export const getLinksFileMD = (content) => {
-  const regExLink = /\[([^\[]+)\]\(http?(.*)\)/gm
-  // const regExLink = /(?:(?:https|http?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm
-  const arrayLinks = content.match(regExLink)
+// export const getLinksFileMD = (content) => {
+//   const regExLink = /\[([^\[]+)\]\(http?(.*)\)/gm
+//   // const regExLink = /(?:(?:https|http?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm
+//   const arrayLinks = content.match(regExLink)
+//   return arrayLinks
+// }
+
+export const getLinksFileMD = (content, pathRoot) => {
+  const arrayLinks = []
+  const fileContent = content
+  const foundLinksRegEx = /\[([^\[]+)\](\(.*\))/gm
+  const contentLinkRegEx = /\[([^\[]+)\]\((.*)\)/
+  const linksonMdFile = fileContent.match(foundLinksRegEx)
+  linksonMdFile.forEach(link => {
+    const foundLinksMd = link.match(contentLinkRegEx)
+    arrayLinks.push({
+      href: foundLinksMd[2],
+      text: foundLinksMd[1],
+      file: pathRoot
+    })
+  })
   return arrayLinks
 }

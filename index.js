@@ -1,4 +1,4 @@
-import { getContentMdFile, getFilesMdofDirectory, determinateAbsolutePath, createAbsolutePath, validatePath, ifIsDirectory, ifIsFile } from './api.js'
+import { readaPathFile, getFilesMdofDirectory, determinateAbsolutePath, createAbsolutePath, validatePath, ifIsDirectory, ifIsFile } from './api.js'
 export const mdlinks = (route) => {
   validatePath(route) === true ? console.log('Ruta existente') : console.log('Ruta no existente. Ingrese otra ruta.')
   determinateAbsolutePath(route) === true ? console.log('La ruta es absoluta') : console.log('La ruta es relativa... Convirtiendo')
@@ -7,8 +7,9 @@ export const mdlinks = (route) => {
     console.log(getFilesMdofDirectory(route))
   }
   if (ifIsFile(route)) {
-    getContentMdFile(route)
+    console.log(readaPathFile(route))
   }
 }
 
-mdlinks('archivosdeprueba')
+mdlinks('exampleFileMD.md')
+//mdlinks('archivosdeprueba')
