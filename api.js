@@ -24,10 +24,8 @@ export const ifIsDirectory = (pathRoot) => {
 }
 
 // MOSTRAR EL CONTENIDO DE UN ARCHIVO
-export const readaPathFile = (pathRoot) => {
-  const result = fs.readFileSync(pathRoot).toString()
-  return result.length === 0 ? [] : getLinksFileMD(result, pathRoot)
-}
+export const readaPathFile = (pathRoot) => fs.readFileSync(pathRoot).toString()
+
 
 // mostrar contenido de un archivo MD
 // export const getContentMdFile = (pathRoot) => {
@@ -64,9 +62,9 @@ export const getFilesMdofDirectory = (pathRoot) => {
 // }
 // Primera función CallBack
 // Función que extrae links de los archivos md, si no hay devuelve array vacío
-export const getLinksFileMD = (content, pathRoot) => {
+export const getLinksFileMD = (callback, pathRoot) => {
   const arrayLinks = []
-  const fileContent = content
+  const fileContent = callback
   const foundLinksRegEx = /\[([^\[]+)\](\(.*\))/gm
   const contentLinkRegEx = /\[([^\[]+)\]\((.*)\)/
   const linksonMdFile = fileContent.match(foundLinksRegEx)
