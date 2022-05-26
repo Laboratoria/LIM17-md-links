@@ -62,7 +62,8 @@ export const getFilesMdofDirectory = (pathRoot) => {
 //   const arrayLinks = content.match(regExLink)
 //   return arrayLinks
 // }
-
+// Primera función CallBack
+// Función que extrae links de los archivos md, si no hay devuelve array vacío
 export const getLinksFileMD = (content, pathRoot) => {
   const arrayLinks = []
   const fileContent = content
@@ -71,11 +72,13 @@ export const getLinksFileMD = (content, pathRoot) => {
   const linksonMdFile = fileContent.match(foundLinksRegEx)
   linksonMdFile.forEach(link => {
     const foundLinksMd = link.match(contentLinkRegEx)
-    arrayLinks.push({
-      href: foundLinksMd[2],
-      text: foundLinksMd[1],
-      file: pathRoot
-    })
+    if (foundLinksMd[2].includes('http')) {
+      arrayLinks.push({
+        href: foundLinksMd[1],
+        text: foundLinksMd[2],
+        file: pathRoot
+      })
+    }
   })
   return arrayLinks
 }

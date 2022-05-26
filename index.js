@@ -11,5 +11,5 @@ export const mdlinks = (route) => {
   }
 }
 
-mdlinks('exampleFileMD.md')
+mdlinks('exampleFileMDNull.md')
 //mdlinks('archivosdeprueba')
