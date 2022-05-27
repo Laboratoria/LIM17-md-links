@@ -11,26 +11,32 @@ if(inputArgs === 0 && !route){
  const mngError ='Enter the route';
  console.log(mngError)
 
-} else if(inputArgs === 1 && !validate && !stats){  
+} else if(inputArgs === 1 && !validate && !stats){ 
+  // presentar: href, text, file 
    const arrObj= mdLinks(route, false);
-   const notValidate = arrObj.forEach(el =>{ el.href, el.text, el.file});
-   console.log(notValidate)
+  //  const notValidate = arrObj.forEach(el =>`Href: ${el.href}\n  Text: ${el.text}\n  File: ${el.file}`)
+   console.log(arrObj)
 
 } else if(inputArgs === 2 && validate && !stats){
-  console.log(' href, text, file, status, ok')
+ // presentar: href, text, file, status, ok
    mdLinks(route, true)
-  .then(links => { console.log(links)
+  .then(links => { 
+    console.log(links)
   })
   .catch(console.error);
 
 } else if(inputArgs === 2 && !validate && stats){
-   console.log('Total Unique')
+   // presentar: Total Unique
+   const arrObjStats= mdLinks(route, false);
+  
+   console.log(arrObjStats)
 
 } else if(inputArgs === 2 && validate && stats){
     console.log('Total Unique Broken')
-  mdLinks(inputRoute, true )
-  .then(links => {
-    // stats
-  })
-  .catch(console.error);
+ // presentar: Total Unique Broken
+ mdLinks(route, true)
+ .then(links => { 
+   console.log(links)
+ })
+ .catch(console.error);
 }
