@@ -7,46 +7,36 @@ const stats = args.includes('--stats');
 const validate = args.includes('--validate');
 const inputArgs = args.length;
 
+if(inputArgs === 0 && !route){
+ const mngError ='Enter the route';
+ console.log(mngError)
 
-console.log(process.argv)
-if(inputArgs === 0){
- console.log('No ingresaste la ruta')
-}
+} else if(inputArgs === 1 && !validate && !stats){ 
+  // presentar: href, text, file 
+   const arrObj= mdLinks(route, false);
+  //  const notValidate = arrObj.forEach(el =>`Href: ${el.href}\n  Text: ${el.text}\n  File: ${el.file}`)
+   console.log(arrObj)
 
-if(inputArgs === 1){
-  console.log('href, text, file')
-  // mdLinks(route)
-  //   .then(links => {
-  //       links
-  //     // => [{ href, text, file }, ...]
-  //   })
-  //   .catch(console.error);
-}
+} else if(inputArgs === 2 && validate && !stats){
+ // presentar: href, text, file, status, ok
+   mdLinks(route, true)
+  .then(links => { 
+    console.log(links)
+  })
+  .catch(console.error);
 
-if(inputArgs === 2){
-  console.log('Solo --validate ')
-  if(validate && !stats){
- 
-  console.log(' href, text, file, status, ok')
-//   mdLinks(inputRoute, { validate: true })
-//   .then(links => {
-//     // => [{ href, text, file, status, ok }, ...]
-//   })
-//   .catch(console.error);
-  }
+} else if(inputArgs === 2 && !validate && stats){
+   // presentar: Total Unique
+   const arrObjStats= mdLinks(route, false);
+  
+   console.log(arrObjStats)
 
-if(!validate && stats){
-  console.log('Total Unique')
-}
-
-}
-
-
-if(validate && stats){
+} else if(inputArgs === 2 && validate && stats){
     console.log('Total Unique Broken')
-//     mdLinks(inputRoute, { validate: true })
-//   .then(links => {
-//     // stats
-//   })
-//   .catch(console.error);
+ // presentar: Total Unique Broken
+ mdLinks(route, true)
+ .then(links => { 
+   console.log(links)
+ })
+ .catch(console.error);
 }

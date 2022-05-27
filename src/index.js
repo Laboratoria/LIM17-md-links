@@ -2,13 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const fetch = require("node-fetch");
 
-let inputRoute = process.argv[2];
+const absolutePath = (inputRoute) =>path.isAbsolute(inputRoute) ? inputRoute : path.resolve(inputRoute);
 
-const absolutePath = (inputRoute) =>
-  path.isAbsolute(inputRoute) ? inputRoute : path.resolve(inputRoute);
-
-const existsRoute = (inputRoute) =>
-  fs.existsSync(inputRoute) ? inputRoute : "NA";
+const existsRoute = (inputRoute) =>fs.existsSync(inputRoute) ? inputRoute : "NA";
 
 const isFolder = (inputRoute) => fs.statSync(inputRoute).isDirectory();
 
@@ -30,8 +26,6 @@ const getFileFolder = (inputRoute) => {
   return arrCotainer;
 };
 
-console.log(getFileFolder(inputRoute));
-
 const getLinks = (inputFile) => {
   const linkExpReg =/\[([\w\s\d.()]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/gm;
   const urlExpReg = /\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/gm;
@@ -50,11 +44,14 @@ const getLinks = (inputFile) => {
   });
 };
 
-const arrLinksMd = getFileFolder(inputRoute);
-const linksCollection = arrLinksMd.map((file) => getLinks(file));
+const objLinks =(inputRoute)=>{
+  const arrLinksMd = getFileFolder(inputRoute);
+  const linksCollection = arrLinksMd.map((file) => getLinks(file));
+  return linksCollection[0]
+}
 
 const linksStatus = (linksCollection) => {
-  const arrStatus = linksCollection[0].map((el) => {
+  const arrStatus = linksCollection.map((el) => {
     const fetchObj = fetch(el.href)
       .then((res) => {
         const msgStatus =
@@ -76,14 +73,9 @@ const linksStatus = (linksCollection) => {
   return Promise.all(arrStatus).then((el) => console.log(el));
 };
 
-linksStatus(linksCollection);
-
-// console.log('prueba')
-
 module.exports = {
   existsRoute,
   absolutePath,
-  getFileFolder,
-  getLinks,
-  linksStatus 
+  objLinks, 
+  linksStatus
 };
