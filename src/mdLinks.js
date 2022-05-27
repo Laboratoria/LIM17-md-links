@@ -1,9 +1,14 @@
-const { }= require('./index.js')
+const {  
+  existsRoute,
+  absolutePath,
+  getFileFolder,
+  getLinks,
+  linksStatus 
+}= require('./index.js')
 
 //Función Principal
 
-const mdLinks = (inputRoute, options) =>{
-};
-
+const mdLinks = (route, options) =>{
+}
 
   module.exports = {mdLinks};

@@ -6,8 +6,10 @@ let inputRoute = process.argv[2];
 
 const absolutePath = (inputRoute) =>
   path.isAbsolute(inputRoute) ? inputRoute : path.resolve(inputRoute);
+
 const existsRoute = (inputRoute) =>
   fs.existsSync(inputRoute) ? inputRoute : "NA";
+
 const isFolder = (inputRoute) => fs.statSync(inputRoute).isDirectory();
 
 const getFileFolder = (inputRoute) => {
@@ -31,8 +33,7 @@ const getFileFolder = (inputRoute) => {
 console.log(getFileFolder(inputRoute));
 
 const getLinks = (inputFile) => {
-  const linkExpReg =
-    /\[([\w\s\d.()]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/gm;
+  const linkExpReg =/\[([\w\s\d.()]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/gm;
   const urlExpReg = /\(((?:\/|https?:\/\/)[\w\d./?=#&_%~,.:-]+)\)/gm;
   const textExpReg = /\[[\w\s\d.()]+\]/;
   const arrLinks = fs.readFileSync(inputFile, "utf-8").match(linkExpReg);
@@ -67,22 +68,21 @@ const linksStatus = (linksCollection) => {
         };
         return objStatus;
       })
-      .catch(() => ({
-        href: el.href,
-        text: el.text,
-        file: el.file,
-        status: "Fail: Your request failed",
-        ok: "fail",
+      .catch(() => ({href: el.href, text: el.text, file: el.file,
+        status: "Fail: Your request failed", ok: "fail",
       }));
     return fetchObj;
   });
-  return Promise.all(arrStatus);
+  return Promise.all(arrStatus).then((el) => console.log(el));
 };
 
-linksStatus(linksCollection).then((el) => console.log(el));
+// linksStatus(linksCollection);
 
-console.log('prueba')
+// console.log('prueba')
 module.exports = {
   existsRoute,
   absolutePath,
+  getFileFolder,
+  getLinks,
+  linksStatus 
 };
