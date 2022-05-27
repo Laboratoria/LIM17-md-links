@@ -23,7 +23,7 @@ const travelByDirectoryAndFile = (route) => {
       if(pathIsAdirectory(routeList)){ // si ya es un directorio con su archivos
         arrayResult = arrayResult.concat(travelByDirectoryAndFile(routeList))
       }
-      if(path.extname(routeList === '.md')){ // routeList Get the extension from a file path
+      if(path.extname(routeList) === '.md'){ // routeList Get the extension from a file path
         arrayResult.push(routeList);
       }
     })

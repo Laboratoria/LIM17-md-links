@@ -15,7 +15,7 @@ const api_MDlinks = (path) => {
     }
   });
 }
-console.log(api_MDlinks('C:\\Users\\QA0005\\Desktop\\LAB\\LIM017-md-links\\prueba1.md'));
+console.log(api_MDlinks('C:\\Users\\QA0005\\Desktop\\LAB\\LIM017-md-links\\testFiles\\prueba1.md'));
 
 // console.log(api_MDlinks('prueba1.md'));
 export default { api_MDlinks }
