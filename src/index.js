@@ -76,9 +76,10 @@ const linksStatus = (linksCollection) => {
   return Promise.all(arrStatus).then((el) => console.log(el));
 };
 
-// linksStatus(linksCollection);
+linksStatus(linksCollection);
 
 // console.log('prueba')
+
 module.exports = {
   existsRoute,
   absolutePath,
