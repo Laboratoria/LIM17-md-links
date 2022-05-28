@@ -1,0 +1,1 @@
+const { absolutePath, pathExists } = require('./index.js')
