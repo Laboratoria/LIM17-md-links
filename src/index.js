@@ -4,7 +4,7 @@ const fetch = require("node-fetch");
 
 const absolutePath = (inputRoute) =>path.isAbsolute(inputRoute) ? inputRoute : path.resolve(inputRoute);
 
-const existsRoute = (inputRoute) =>fs.existsSync(inputRoute) ? inputRoute : "NA";
+const existsRoute = (inputRoute) =>fs.existsSync(inputRoute);
 
 const isFolder = (inputRoute) => fs.statSync(inputRoute).isDirectory();
 
@@ -70,7 +70,7 @@ const linksStatus = (linksCollection) => {
       }));
     return fetchObj;
   });
-  return Promise.all(arrStatus).then((el) => console.log(el));
+  return Promise.all(arrStatus);
 };
 
 module.exports = {

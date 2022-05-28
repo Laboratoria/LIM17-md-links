@@ -6,15 +6,20 @@ const {
 }= require('./index.js')
 
 const mdLinks = (route, options) =>{
+  return new Promise ((resolve, reject) => {
   const inputPath = absolutePath(route);
-  const exitsPath = existsRoute(inputPath);
-  const getObjLinks = objLinks(exitsPath);
-  if(options){
-   return linksStatus(getObjLinks)
+  if (existsRoute(inputPath)){
+    const getObjLinks = objLinks(inputPath);
+    if(options){
+      resolve(linksStatus(getObjLinks)) 
+     }
+     else {
+      resolve(objLinks(inputPath));
+     }
+  } else {
+    reject("La ruta no existe, vuelva a ingresar una ruta") 
   }
-  else {
-   return  objLinks(exitsPath);
   }
-}
+)}
 
 module.exports = {mdLinks};
