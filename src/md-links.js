@@ -1,58 +1,107 @@
-const fs = require('fs')
-const path = require('path')
-const fetch = require("node-fetch")
+const fs = require("fs");
+const path = require("path");
+// const fetch = require("node-fetch");
 
+const existRoute = (inputPath) => fs.existsSync(inputPath);
 
-const existRoute = (inputPath) => fs.existsSync(inputPath)
 const convertToAbsolute = (inputPath) => {
   if (path.isAbsolute(inputPath)) {
-    return inputPath
+    return inputPath;
   } else {
-    return path.resolve(inputPath)
+    return path.resolve(inputPath);
   }
-}
-const checkAbsolute = (inputPath) =>{
- if( path.isAbsolute(inputPath)){
-   return inputPath;
- }else{
-   return path.resolve(inputPath)
- }
-} 
-console.log(path.isAbsolute('/test/demo_path.js'))
-console.log(path.isAbsolute('test/demo_path.js'))
+};
+console.log(path.isAbsolute("/test/demo_path.js"));
+console.log(path.isAbsolute("test/demo_path.js"));
 
-const verifyDirectory= (inputPath) =>{
+const verifyDirectory = (inputPath) => {
   getInformation = fs.statSync(inputPath);
-  return getExtension.isDirectory();
- }
- 
+  return getInformation.isDirectory();
+};
 
 const openedDirectory = (inputPath) => {
   let files = fs.readdirSync(inputPath);
-  let arrayFiles=[];
+  let arrayFiles = [];
   files.forEach((file) => {
     const pathChild = path.resolve(inputPath, file);
-    if(fs.statSync(pathChild).isFile()) {
+    if (fs.statSync(pathChild).isFile()) {
       arrayFiles.push(pathChild);
     } else {
-      const directory= openedDirectory(pathChild);
-      arrayFile= arrayFiles.concat(directory);
+      const directory = openedDirectory(pathChild);
+      arrayFiles = arrayFiles.concat(directory);
     }
   });
   return arrayFiles;
 };
-console.log(fs.readdirSync("./exampleFile"))
+console.log(fs.readdirSync("./exampleFile"));
+
+const filterFile = (arr) => arr.filter((file) => path.extname(file) == ".md");
 
 
-const filterFile = (arr) => arr.filter(file => path.extname(file) == ".md")
-console.log(filterFile)
+console.log(path.extname("./exampleFile"));
+
+const gettinlinks = (arrPath) => {
+  const regExp = /\[(.*)\]\(((?:\/|https?:\/\/).*)\)/gi;
+  const regExpText = /\[(.*)\]/g;
+  const regExpURL = /\(((?:\/|https?:\/\/).*)\)/g;
+  let arrLinks = [];
+  if (arrPath.lengeth > 0) {
+    arrPath.forEach((path) => {
+      const contents = fs.readFileSync(path, "utf8");
+      const arrLinksFile = contents.match(regExp);
+      if (arrLinksFile) {
+        let arrayDataFile = [];
+        arrLinksFile.forEach((link) => {
+          const resolveLinks = link.match(regExpURL).join().slice(1, -1);
+          const resolveText = link.match(regExpText).join().slice(1, -1);
+          const object = {
+            href: resolveLinks,
+            text: resolveText.substring(0, 50),
+            file: path,
+          };
+          arrayDataFile.push(object);
+        });
+        arrLinks = arrLinks.concact(arrayDataFile);
+      }
+    });
+  }
+  return arrLinks;
+
+
+};
+
+const statusLinks = (arrayLinks) => {
+  const arr =arrayLinks.map((element) => {
+    const fetchPromise = fetch(element.href)
+    .then((response) =>{
+      const statusCode = response.status;
+      const msg = response.status >= 200 && response.status <= 299 ? response.statusText : 'FAIL';
+      return {
+        href: element.href,
+        text: element.text,
+        file: element.file,
+        status: statusCode,
+        message: msg,
+      };
+    })
+    .catch(() => ({
+      href: element.href,
+      text: element.text,
+      file: element.file,
+      status: 'Failed request',
+      ok: 'fail',
+    }));
+  return fetchPromise;
+});
+return Promise.all(arr);
+};
 
 module.exports = {
   existRoute,
-  checkAbsolute,
-  verifyDirectory,
   convertToAbsolute,
+  verifyDirectory,
+  openedDirectory,
   filterFile,
-  openedDirectory
-}
-
+  gettinlinks,
+  statusLinks
+};

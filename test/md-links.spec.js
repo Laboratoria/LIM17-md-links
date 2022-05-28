@@ -1,13 +1,24 @@
 const {existRoute, checkAbsolute, verifyDirectory,convertToAbsolute,filterFile, openedDirectory}= require('../src/md-links');
 
+const path = "C:\Users\Joss\Documents\GitHub\LIM017-md-links\exampleFile";
+const falsePath ="C:/Users/Joss/Documents/GitHub/LIM017-md-linksexampleFile";
 
-describe ("checkAbsolute", () => {
-  it("deberia retornar la misma ruta",()=>{
-    expect(path.isAbsolute('/test/demo_path'))
-    .toBe("/test/demo_path");
+describe ("existRoute", () => {
+  it("deberia retornar true si la ruta existe",() => {
+    expect(existRoute(path)).toBe(true);
   });
-  it("deberia retornar la ruta absoluta",()=>{
-expect(checkAbsolute("index.js")).toBe("/test/index.js");
+
+  it("deberia retornar false si la ruta existe",()=>{
+expect(checkAbsolute(falsePath)).toBe(false);
   })
 });
 
+
+describe('verifiesPathExist', () => {
+  it('should return True if a path exists', () => {
+    expect(verifiesPathExist(path)).toBe(true)
+  });
+  it('should return False if a path does not exists', () => {
+    expect(verifiesPathExist(falsePath)).toBe(false)
+  });
+});

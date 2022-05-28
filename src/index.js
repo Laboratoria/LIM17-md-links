@@ -1,16 +1,49 @@
-const fs = require('fs')
-const path = require('path')
+const {
+  existRoute,
+  convertToAbsolute,
+  verifyDirectory,
+  openedDirectory,
+  filterFile,
+  gettinlinks,
+  statusLinks } = require('./md-links');
 
-const isAbsolute = (inputPath) => path.isAbsolute(inputPath) ? inputPath : path.resolve(inputPath)
+  const mdLinks = (path, options = {validate: false}) => {
+    return new Promise((resolve, reject) => {
+      const converPath = convertToAbsolute(path);
+      let arrayMd =[];
+      if(existRoute(converPath)) {
 
-const pathExists = (inputPath) => fs.existsSync(isAbsolute(inputPath))
+        if(verifyDirectory(converExample)){
+          const arrFile = openedDirectory(converExample);
 
-const convertToAbsolute = (inputPath) => path.resolve(inputPath)
+          if (arrFile.lengeth > 0) {
+            arrayMd = filterFile (arrFile);
+         }else {
+           reject(" ⛔️ El directorio está vacío, ingrese otra ruta.");
+         }
 
-const checkIsDirectory = (inputPath) => fs.statSync(inputPath).isDirectory()
+         } else {
+           arrayMd = filesMd ([converExample]);
+         }
+         if (arrayMd.length > 0) {
+           const arrLink = links (arrayMd)
+           if (arrLink.length > 0) {
+             if (options,validate) {
+               statusLinks(arrLink)
+               .then(response =>resolve (response));
+             }else {
+               resolve(arrLink)
+             }
+           }else {
+             reject(" ⛔️ No hay enlaces, introduce otra ruta.");
+           }
+         }else {
+           reject(" ⛔️ No hay archivos .md, ingrese otra ruta.");
+         }
+        }else {
+          reject(" ⛔️ La entrada de ruta no existe, ingrese otra ruta.");
+        }
+      })
+    }
 
-const getExtension = (inputPath) => path.extname(inputPath)
-
-module.exports = {
-  isAbsolute, pathExists, convertToAbsolute, checkIsDirectory, getExtension
-}
+    module.exports = {mdLinks}
