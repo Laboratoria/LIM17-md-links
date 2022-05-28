@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-
 // eslint-disable-next-line no-unused-vars
-const [,, ...args] = process.argv
-console.log(`Hello Mundo ${args}`)
+import { mdLinks } from './index.js'
+import chalk from 'chalk'
+const entryArray = process.argv
+const entryPath = entryArray[2]
+mdLinks(entryPath)

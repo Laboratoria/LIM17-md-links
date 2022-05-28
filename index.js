@@ -1,36 +1,33 @@
+/* eslint-disable prefer-promise-reject-errors */
 import {
   readaPathDirectory,
   getLinksFileMD,
   readaPathFile,
   getLinksofDirectory,
-  determinateAbsolutePath,
-  createAbsolutePath,
   validatePath,
   ifIsDirectory,
-  ifIsFile
+  ifIsFile,
+  findMdFile
 } from './api.js'
-// export const mdlinks = (route) => {
-//   validatePath(route) === true ? console.log('Ruta existente') : console.log('Ruta no existente. Ingrese otra ruta.')
-//   determinateAbsolutePath(route) === true ? console.log('La ruta es absoluta') : console.log('La ruta es relativa... Convirtiendo')
-//   console.log('la ruta relativa es : ' + createAbsolutePath(route))
-//   if (ifIsDirectory(route) === true) {
-//     console.log(getLinksofDirectory(readaPathDirectory(route), route))
-//   }
-//   if (ifIsFile(route)) {
-//     console.log(getLinksFileMD(readaPathFile(route), route))
-//   }
-// }
 
-// mdlinks('exampleFileMD.md')
 
-export const mdLinks = (path, option) => {
+//Promesa planteada para que devuelva resultados solo ingresando ruta (falta validate y stast)
+export const mdLinks = (path) => {
   return new Promise((resolve, reject) => {
     if (validatePath(path)) {
-      resolve('the path exists')
+      if (ifIsFile(path)) {
+        if (findMdFile(path)) {
+          resolve(getLinksFileMD(readaPathFile(path), path))
+        } else {
+          reject('No se encontró ningun archivo MarkDown')
+        }
+      } else if (ifIsDirectory(path)) {
+        resolve(getLinksofDirectory(readaPathDirectory(path), path))
+      }
     } else {
-      reject('Not valid')
+      reject('La ruta es inexistente')
     }
   })
 }
 
-mdLinks('archivosdepruebas')
+// mdLinks('')

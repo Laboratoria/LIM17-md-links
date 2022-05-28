@@ -5,13 +5,13 @@ import path from 'path'
 const arrayLinks = []
 
 // Función para determinar si la ruta es absoluta o no
-export const determinateAbsolutePath = (pathRoot) => path.isAbsolute(pathRoot)
+export const determinateAbsolutePath = (pathRoot) => path.isAbsolute(pathRoot) ? pathRoot : createAbsolutePath(pathRoot)
 
 // Función para convertir ruta en absoluta
 export const createAbsolutePath = (pathRoot) => path.resolve(pathRoot)
 
 // Función para comprovar si la ruta existe o no
-export const validatePath = (pathRoot) => fs.existsSync(pathRoot)
+export const validatePath = (pathRoot) => fs.existsSync(determinateAbsolutePath(pathRoot))
 
 // Funciones para saber si el path es directorio o file
 // saber si es file
