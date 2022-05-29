@@ -1,26 +1,26 @@
 #!/usr/bin/env node
 const {mdLinks} = require('./mdLinks.js');
-
-const [a, b, ...args]= process.argv;
+console.log(process.argv);
+const [, , ...args]= process.argv;
 const route = args[0];
 const stats = args.includes('--stats');
 const validate = args.includes('--validate');
 const inputArgs = args.length;
 
 if(inputArgs === 0 && !route){
- const mngError ='Enter the route';
+ const mngError = 'Enter the route';
  console.log(mngError)
 
 } else if(inputArgs === 1 && !validate && !stats){ 
    mdLinks(route, false)
    .then((result) =>{
-   result.forEach(el => console.log(`href: ${el.href}\ntext: ${el.text}\nfile: ${el.file}\n`)) //href, text, file 
+   result.forEach(el => console.log(`${el.href}\n${el.text}\n${el.file}\n`)) //href, text, file 
   });
 
 } else if(inputArgs === 2 && validate && !stats){
    mdLinks(route, true)
   .then((result) =>{
-    result.forEach(el => console.log(`href: ${el.href}\ntext: ${el.text}\nfile: ${el.file}\nstatus: ${el.status}\nok: ${el.ok}\n `))
+    result.forEach(el => console.log(`${el.href}\n${el.text}\n${el.file}\n${el.status}\n${el.ok}\n`))
   })//href, text, file, status, ok
   .catch(console.error);
 

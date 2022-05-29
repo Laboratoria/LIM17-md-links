@@ -77,5 +77,6 @@ module.exports = {
   existsRoute,
   absolutePath,
   objLinks, 
-  linksStatus
+  linksStatus,
+  isFolder
 };

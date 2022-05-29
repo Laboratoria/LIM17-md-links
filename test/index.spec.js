@@ -1,4 +1,4 @@
-const { absolutePath, existsRoute } = require('../src/index.js');
+const { absolutePath, existsRoute, isFolder } = require('../src/index.js');
 
 const routeRelative = '../README.md';
 const routeAbsolute = 'C:\\Users\\USER\\Desktop\\README.md';
@@ -10,8 +10,14 @@ describe('absolutePath', () => {
     });
 });
 
-
-test('testing', () => {
-	expect(existsRoute(routeRelative)).toBe("NA")
+describe('existsRoute ', () => {
+test('existsRoute', () => {
+	expect(existsRoute(routeExits)).toBe(false)
+});
 });
 
+// describe('isFolder', () => {
+//     test('isFolder', () => {
+//         expect(isFolder(routeAbsolute)).toBe(true)
+//     });
+//     });
