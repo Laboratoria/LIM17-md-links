@@ -15,7 +15,7 @@ Instale la libreria ingresando:
 - Podrá ingresar dos opciones: *--validate* y/o *--stats* o ninguna de ellas
 - Ingresar siempre el path (ruta del archivo/carpeta)
 
-Sin opciones:
+**Sin opciones:**
 
 `md-links  path `
 
@@ -26,7 +26,8 @@ Devolvera los datos de la siguiente manera:
 
 ![md-links](https://i.ibb.co/c34Xn95/validate-False.png)
 
-Con opción *--validate*
+**Con opción *--validate*:**
+
 `md-links  path --validate `
 
 Devolvera los datos de la siguiente manera: 
@@ -38,7 +39,7 @@ Devolvera los datos de la siguiente manera:
 
 ![md-links](https://i.ibb.co/PMGRzBD/validate-True.png)
 
-Con opción *--stats*
+**Con opción *--stats*:**
 
 `md-links  path -- stats `
 
@@ -48,7 +49,7 @@ Devolvera los datos de la siguiente manera:
 
 ![md-links](https://i.ibb.co/r2Thjwp/stats.png)
 
-Con opción *--validate --stats*
+**Con opción *--validate --stats*:**
 
 `md-links  path --validate --stats `
 
