@@ -35,7 +35,7 @@ Con opción* --stats*
 `md-links  path -- stats `
 
 Devolvera los datos de la siguiente manera:
-* `Total: 3
+* `Total: 3`
 * `Unique: 3 `
 
 Con opción* --validate --stats*
@@ -43,7 +43,7 @@ Con opción* --validate --stats*
 `md-links  path --validate --stats `
 
 Devolvera los datos de la siguiente manera:
-* `Total: 3
+* `Total: 3`
 * `Unique: 3 `
 * `Broken: 1 `
 
