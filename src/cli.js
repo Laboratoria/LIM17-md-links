@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const {mdLinks} = require('./mdLinks.js');
-console.log(process.argv);
+
 const [, , ...args]= process.argv;
 const route = args[0];
 const stats = args.includes('--stats');
