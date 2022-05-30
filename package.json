@@ -16,11 +16,16 @@
     "test": "jest --coverage"
   },
   "dependencies": {
-    "chalk": "^5.0.1",
+    "axios": "^0.27.2",
+    "chalk": "^4.1.2",
     "eslint": "^8.15.0",
     "jest": "^28.1.0",
     "marked": "^4.0.16",
+    "node-fetch": "^3.2.4",
     "test": "^0.6.0"
+  },
+  "bin": {
+    "md-links": "cli.js"
   },
   "keywords": [
     "node",

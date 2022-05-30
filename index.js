@@ -1,45 +1,32 @@
 
-
 /* eslint-disable semi */
 const utils = require('./utils');
+const chalk = require('chalk');
 
-console.log(process.argv);
-/* ---intentando con promesa --- */
-
-const extensionMD= utils.pathExtension('src/md-links.md');
-console.log(extensionMD);
-// poner el catch ver video de promise otra vez
-const mdLinks = (path, options) => {
-  
-    let filesFounded = [];
-    
- 
-const transformToAbs =  utils.pathTransformAbs('index.js');
-if(console.log(utils.searchFiles(transformToAbs))){
-const readDirectory = utils.readDirectory(transformToAbs);
-
-};
-};
+// /* ---intentando con promesa --- */
 
 
-// if(dir<1){
-//   1ero.- throw new Error('no existen directorios' + 'buscando archivos')
-//   2do.- ejecutar "buscar archivos"
-//   }
-//   if (dir === 1) {
-//   return fs.readdir('./',(err, files) ={
-//   files.forEah( file => {
-//   console.log (file);
-//   filesFoundes.push(file);
-   
-//   else{
-//    (dir * factorial(dir - 1)); 
-  
-//   }
-//   factorial(dir); //directorios
-  
-  
-//   dir === 1 //caso base(cb), sin un cb la pc agotará sus recursos 
-//   type error "to much resurces" 
+const mdLinks = (path, options) => new Promise ((resolve, reject) => {
+ const absolutePath = utils.pathTransformAbs(path);
+ if(utils.existenceOfaRoute(absolutePath)){
+     const linksIntoMdFiles = utils.linksIntoMdFiles(path);
+     if(linksIntoMdFiles === 0) {
+         reject(console.log('error: no hay links')) 
+     } else {
+         if (options.validate === true) {
+            resolve( utils.validatingLinks(linksIntoMdFiles))
+         } else{
+            resolve(linksIntoMdFiles)
+         }
+     }
+ } else {
+     reject (console.log(chalk.bold.red('error: no existe la ruta')))
+ }
+})
+.then( (response) => {
+    response.map( (promise) => promise.value ? promise.value : promise)
+});
 
-
+module.exports = {
+    mdLinks
+}
