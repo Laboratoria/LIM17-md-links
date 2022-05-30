@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import fs from 'fs'
 import path from 'path'
+import fetch from 'node-fetch'
 
 const arrayLinks = []
 
@@ -32,30 +33,13 @@ export const readaPathFile = (pathRoot) => fs.readFileSync(pathRoot).toString()
 // encontrar archivos con extensión de .md
 export const findMdFile = (pathRoot) => path.extname(pathRoot) === '.md'
 
+
 // leer un directorio (devuelve el contenido sin identifiacr si hay o no carpetas dentro)
 export const readaPathDirectory = (pathRoot) => fs.readdirSync(pathRoot)
 
-// recursividad / para obtener los archivos MD de cada directorio y encontrar los links en cada archivo de cada direcrtorio
-export const getLinksofDirectory = (callback, pathRoot) => {
-  callback.forEach(e => {
-    const newPathDirectory = path.join(pathRoot, e)
-    if (ifIsFile(newPathDirectory)) {
-      if (findMdFile(newPathDirectory)) {
-        const links = getLinksFileMD(readaPathFile(newPathDirectory), newPathDirectory)
-        arrayLinks.push(links)
-      }
-    } else {
-      getLinksofDirectory(readaPathDirectory(newPathDirectory), newPathDirectory)
-    };
-  }
-  )
-  return arrayLinks
-}
-
-// Primera función CallBack
 // Función que extrae links de los archivos md, si no hay devuelve array vacío
-export const getLinksFileMD = (callback, pathRoot) => {
-  const fileContent = callback
+export const getLinksFileMD = (pathRoot) => {
+  const fileContent = readaPathFile(pathRoot)
   const foundLinksRegEx = /\[([^\[]+)\](\(.*\))/gm
   const contentLinkRegEx = /\[([^\[]+)\]\((.*)\)/
   const linksonMdFile = fileContent.match(foundLinksRegEx)
@@ -64,12 +48,56 @@ export const getLinksFileMD = (callback, pathRoot) => {
       const foundLinksMd = link.match(contentLinkRegEx)
       if (foundLinksMd[2].includes('http')) {
         arrayLinks.push({
-          href: foundLinksMd[1],
-          text: foundLinksMd[2],
+          href: foundLinksMd[2],
+          text: foundLinksMd[1],
           file: pathRoot
         })
       }
     })
   }
+  return arrayLinks
+}
+// valida la url
+export const validateLinks = (arrayLinks) => {
+  const arrayLinksStatus = arrayLinks.map(e => {
+    const fetchPromise = fetch(e.href)
+      .then((data) => {
+        const dataStatus = {
+          href: e.href,
+          text: e.text,
+          file: e.file,
+          status: data.status,
+          msg: data.statusText
+        }
+        return console.log(dataStatus)
+      }).catch(() => {
+        const dataStatusFail = {
+          href: e.href,
+          text: e.text,
+          file: e.file,
+          status: 'Fail Request',
+          msg: 'fail'
+        }
+        return console.log(dataStatusFail)
+      })
+    return fetchPromise
+  })
+  return Promise.all(arrayLinksStatus)
+}
+
+// recursividad / para obtener los archivos MD de cada directorio y encontrar los links en cada archivo de cada direcrtorio
+export const getLinksofDirectory = (pathRoot) => {
+  readaPathDirectory(pathRoot).forEach(e => {
+    const newPathDirectory = path.join(pathRoot, e)
+    if (ifIsFile(newPathDirectory)) {
+      if (findMdFile(newPathDirectory)) {
+        const links = validateLinks(getLinksFileMD(newPathDirectory))
+        arrayLinks.push(links)
+      }
+    } else {
+      getLinksofDirectory(newPathDirectory)
+    };
+  }
+  )
   return arrayLinks
 }

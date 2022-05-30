@@ -7,22 +7,23 @@ import {
   validatePath,
   ifIsDirectory,
   ifIsFile,
-  findMdFile
+  findMdFile,
+  validateLinks
 } from './api.js'
 
-
-//Promesa planteada para que devuelva resultados solo ingresando ruta (falta validate y stast)
+// Promesa planteada para que devuelva resultados solo ingresando ruta (falta validate y stast)
 export const mdLinks = (path) => {
   return new Promise((resolve, reject) => {
     if (validatePath(path)) {
+      if (ifIsDirectory(path)) {
+        resolve(getLinksofDirectory(path))
+      }
       if (ifIsFile(path)) {
         if (findMdFile(path)) {
-          resolve(getLinksFileMD(readaPathFile(path), path))
+          resolve(validateLinks(getLinksFileMD(path)))
         } else {
           reject('No se encontró ningun archivo MarkDown')
         }
-      } else if (ifIsDirectory(path)) {
-        resolve(getLinksofDirectory(readaPathDirectory(path), path))
       }
     } else {
       reject('La ruta es inexistente')
