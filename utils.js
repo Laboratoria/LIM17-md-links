@@ -1,30 +1,32 @@
 const path = require('path') // devuelve <booleano>
-const fs = require('fs') 
-const marked = require ('marked'); // undefined
+const fs = require('fs')
+const marked = require('marked'); // undefined
+const axios = require('axios');
+const chalk = require('chalk');
 
 const existenceOfaRoute = (routes) => fs.existsSync(routes);
 
 /*   ---Convirtiendo rutas relativas a absolutas--- */
-const pathTransformAbs = (routes) => path.isAbsolute(routes) ? routes : path.resolve(routes); 
+const pathTransformAbs = (routes) => path.isAbsolute(routes) ? routes : path.resolve(routes);
 
-const pathExtension = (routes) => path.extname (routes); 
+const pathExtension = (routes) => path.extname(routes);
 
 /*  ---buscando archivos para leer con promesa---  */
 
-const searchFiles = (routes) => fs.readFileSync(routes, 'utf-8'); 
+const searchFiles = (routes) => fs.readFileSync(routes, 'utf-8');
 
- /*   ---Para comprobar si es un directorio---  */
+/*   ---Para comprobar si es un directorio---  */
 
 //  isDirectory() // método que devuelve 'true' si es un directorio, 
 //  luego de llamar a stats que es un objeto
 //  que proporciona info sobre un archivo  o directorio:
 
 const isDirectory = (routes) => fs.statSync(routes).isDirectory();
-   
 
- //isFile() método que devuelve un booleano si es un archivo:
- 
- const isFile = (routes) => fs.statSync(routes).isFile();
+
+//isFile() método que devuelve un booleano si es un archivo:
+
+const isFile = (routes) => fs.statSync(routes).isFile();
 
 /*    ---imprimiendo los archivos que hay dentro del directorio   ---*/
 
@@ -37,15 +39,15 @@ const validateFileMd = (routes) => {
     let filesMd = [];
     if (isFile(routes)) {
         filesMd.push(routes);
-    } else { 
-         readDirectory(routes).forEach(file => { 
-             const route = path.join(routes, file);
-             filesMd = filesMd.concat(validateFileMd(route))
-                 });
-     }
+    } else {
+        readDirectory(routes).forEach(file => {
+            const route = path.join(routes, file);
+            filesMd = filesMd.concat(validateFileMd(route))
+        });
+    }
     const filterByMdFiles = filesMd.filter((routes) => pathExtension(routes) === '.md');
     return filterByMdFiles;
-    };
+};
 
 /*  ---funcion para extraer links--- */
 const linksIntoMdFiles = (routes) => {
@@ -72,20 +74,64 @@ const linksIntoMdFiles = (routes) => {
     return saveRoutesIntoArray;
 };
 
-//console.log(validateFileMd('./files'));
+/*  ---función para validar el estado en que se encuentran los links----    */
+const validatingLinks = (objWithLinks) => {
+    // Un arreglo para guardar?
 
-//console.log(linksIntoMdFiles('C:/Users/USER/Desktop/laboratoria/LIM017-md-links/files'));
+    const urlsArray = objWithLinks.map((link) => axios.get(link.href)
+        .then((response) => {
+        
+            const statusText= ( response.status >= 200 ) && ( response <= 399 ) ? 'ok' : 'fail';
+        
+            return {
+                href: link.href,
+                text: link.text,
+                file: link.file,
+                status: response.status,
+                ok: statusText,
+            }
+        })
+        .catch( () => {
+            
+            return {
+                href: link.href,
+                text: link.text,
+                file: link.file,
+                status: '',
+                ok: 'fail'
+            }
+
+        }));
+    // axios hace peticiones al servidor
+return Promise.allSettled(urlsArray).catch( error => console.log(error));
+
+};
 
 
-// console.log(readDirectory('C:/Users/USER/Desktop/laboratoria/LIM017-md-links/utils.js'));
-// console.log(isFile('./utils.js'));
-// console.log(isDirectory('./files'));
-//console.log(pathTransformAbs('archivo2.md'))
+    /*  ---- para saber cuantos links hay---    */
+     const numbersOfLinks = (objWithLinks) => {
+        
+        // contar cuantos elementos hay en el arrar
+        const lengthOfLinks = objWithLinks.length;
+        // crear una colección(solo con las urls) de valores únicos con Set
+        const uniqueLinks =  new Set( objWithLinks.map(element => element.href));
+        const stats = `${chalk.bold.magenta('Total: ')} ${chalk.magentaBright(lengthOfLinks)} \n${chalk.bold.yellow('Unique: ')}${chalk.bold.yellow(uniqueLinks.size)}`;
+     return stats;
+    };
+
+    /*  --- para saber cuantos links rotos hay ---  */
+    const brokenLinksFx = (objWithLinks) => {
+        const broken = objWithLinks.filter(element => element.ok === 'fail')
+        const stats = `${chalk.bold.red('Broken: ')} ${chalk.bold.red(broken.length)}`;
+        return stats;
+    };
 
 
 
 
 
-
-module.exports = {existenceOfaRoute, pathTransformAbs, pathExtension, searchFiles, 
-readDirectory, isFile, isDirectory, validateFileMd, linksIntoMdFiles};
+module.exports = {
+    existenceOfaRoute, pathTransformAbs, pathExtension, searchFiles,
+    readDirectory, isFile, isDirectory, validateFileMd, 
+    linksIntoMdFiles, validatingLinks, numbersOfLinks, brokenLinksFx,
+};
