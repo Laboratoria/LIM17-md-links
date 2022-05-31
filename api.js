@@ -33,7 +33,6 @@ export const readaPathFile = (pathRoot) => fs.readFileSync(pathRoot).toString()
 // encontrar archivos con extensión de .md
 export const findMdFile = (pathRoot) => path.extname(pathRoot) === '.md'
 
-
 // leer un directorio (devuelve el contenido sin identifiacr si hay o no carpetas dentro)
 export const readaPathDirectory = (pathRoot) => fs.readdirSync(pathRoot)
 
@@ -62,24 +61,21 @@ export const validateLinks = (arrayLinks) => {
   const arrayLinksStatus = arrayLinks.map(e => {
     const fetchPromise = fetch(e.href)
       .then((data) => {
-        const dataStatus = {
+        return {
           href: e.href,
           text: e.text,
           file: e.file,
           status: data.status,
           msg: data.statusText
         }
-        return console.log(dataStatus)
-      }).catch(() => {
-        const dataStatusFail = {
-          href: e.href,
-          text: e.text,
-          file: e.file,
-          status: 'Fail Request',
-          msg: 'fail'
-        }
-        return console.log(dataStatusFail)
-      })
+      }).catch(() => ({
+        href: e.href,
+        text: e.text,
+        file: e.file,
+        status: 'Fail Request',
+        msg: 'fail'
+      }
+      ))
     return fetchPromise
   })
   return Promise.all(arrayLinksStatus)
@@ -91,7 +87,7 @@ export const getLinksofDirectory = (pathRoot) => {
     const newPathDirectory = path.join(pathRoot, e)
     if (ifIsFile(newPathDirectory)) {
       if (findMdFile(newPathDirectory)) {
-        const links = validateLinks(getLinksFileMD(newPathDirectory))
+        const links = getLinksFileMD(newPathDirectory)
         arrayLinks.push(links)
       }
     } else {

@@ -8,9 +8,9 @@ const entryArray = process.argv
 const path = entryArray[2]
 const option = entryArray[3]
 
-mdLinks(path)
+mdLinks(path, option)
   .then((data) => {
     console.log(data)
-  }).catch((data)=> {
+  }).catch((data) => {
     console.log(data)
   })
