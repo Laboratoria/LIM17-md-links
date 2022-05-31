@@ -97,3 +97,14 @@ export const getLinksofDirectory = (pathRoot) => {
   )
   return arrayLinks
 }
+
+// para obtener stats de los links
+export const getStatsLinks = (arrayLinks) => {
+  const linksUnique = new Set(arrayLinks.map(e => e.href))
+  return {
+    file: arrayLinks[0].file,
+    total: arrayLinks.length,
+    unique: linksUnique.size
+  }
+}
+console.log(getStatsLinks(getLinksFileMD('exampleFileMD.md')))

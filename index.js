@@ -2,14 +2,14 @@
 import {
   readaPathDirectory,
   getLinksFileMD,
-  readaPathFile,
   getLinksofDirectory,
   validatePath,
   ifIsDirectory,
   ifIsFile,
   findMdFile,
   validateLinks,
-  determinateAbsolutePath
+  determinateAbsolutePath,
+  getStastLinks
 } from './api.js'
 
 // Promesa planteada para que devuelva resultados solo ingresando ruta (falta validate y stast)
@@ -37,14 +37,14 @@ export const mdLinks = (path, option = { validate: false }) => {
         }
       }
       // añadimos el validar links
-      if (arrayLinks.length !== 0) {
-        if (option.validate === true) {
-          validateLinks(arrayLinks)
-            .then((data) => {
-              resolve(data)
-            })
-        }
-      }
+      // if (arrayLinks.length !== 0) {
+      //   if (option.validate) {
+      //     validateLinks(arrayLinks)
+      //       .then((data) => {
+      //         resolve(data)
+      //       })
+      //   }
+      // }
     }
   })
 }
