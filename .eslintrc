@@ -1,8 +1,19 @@
 {
-  "env": {
-    "node": true
+  "parserOptions": { 
+    "ecmaVersion": 2018 
   },
-  "parserOptions": {
-    "ecmaVersion": 8
-  }
-}
+  "env": { 
+    "es6": true, 
+    "node": true, 
+    "mocha": true 
+  }, 
+"parser": "@babel/eslint-parser",
+  "rules": { 
+    "no-console": "warn", 
+    "no-use-before-define": "warn", 
+    "spaced-comment": "warn" 
+  }, 
+  "extends": [ 
+    "standard" 
+  ]
+} 
