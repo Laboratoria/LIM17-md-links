@@ -1,8 +1,9 @@
-const fs = require("fs");
-const path = require("path");
-// const fetch = require("node-fetch");
+const fs = require('fs');
+const path = require('path');
+// const fetch = require('node-fetch');
 
 const existRoute = (inputPath) => fs.existsSync(inputPath);
+console.log(fs.existsSync("C:\Users\Joss\Documents\GitHub\LIM017-md-links\exampleFile"))
 
 const convertToAbsolute = (inputPath) => {
   if (path.isAbsolute(inputPath)) {
@@ -18,13 +19,16 @@ const verifyDirectory = (inputPath) => {
   getInformation = fs.statSync(inputPath);
   return getInformation.isDirectory();
 };
+console.log(fs.statSync("./exampleFile"));
 
 const openedDirectory = (inputPath) => {
   let files = fs.readdirSync(inputPath);
+  console.log(fs.readdirSync("./exampleFile"));
   let arrayFiles = [];
   files.forEach((file) => {
     const pathChild = path.resolve(inputPath, file);
     if (fs.statSync(pathChild).isFile()) {
+      
       arrayFiles.push(pathChild);
     } else {
       const directory = openedDirectory(pathChild);
@@ -35,10 +39,9 @@ const openedDirectory = (inputPath) => {
 };
 console.log(fs.readdirSync("./exampleFile"));
 
-const filterFile = (arr) => arr.filter((file) => path.extname(file) == ".md");
 
+const filterFile = (array) => array.filter(file => path.extname(file) == ".md");
 
-console.log(path.extname("./exampleFile"));
 
 const gettinlinks = (arrPath) => {
   const regExp = /\[(.*)\]\(((?:\/|https?:\/\/).*)\)/gi;
@@ -70,8 +73,8 @@ const gettinlinks = (arrPath) => {
 
 };
 
-const statusLinks = (arrayLinks) => {
-  const arr =arrayLinks.map((element) => {
+const statusLinks = (arrLinks) => {
+  const arr =arrLinks.map((element) => {
     const fetchPromise = fetch(element.href)
     .then((response) =>{
       const statusCode = response.status;

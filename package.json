@@ -28,6 +28,7 @@
     "url": "git+https://github.com/JossFranco/LIM017-md-links.git"
   },
   "dependencies": {
+    "chalk": "^5.0.1",
     "cowsay": "^1.5.0",
     "figlet": "^1.5.2",
     "jest": "^28.1.0",

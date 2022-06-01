@@ -15,7 +15,6 @@ const {
 
         if(verifyDirectory(converExample)){
           const arrFile = openedDirectory(converExample);
-
           if (arrFile.lengeth > 0) {
             arrayMd = filterFile (arrFile);
          }else {
