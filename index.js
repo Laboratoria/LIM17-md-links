@@ -9,11 +9,12 @@ import {
   findMdFile,
   validateLinks,
   determinateAbsolutePath,
-  getStastLinks
+  getStatsLinks,
+  readaPathFile
 } from './api.js'
 
 // Promesa planteada para que devuelva resultados solo ingresando ruta (falta validate y stast)
-export const mdLinks = (path, option = { validate: false }) => {
+export const mdLinks = (path, option = { validate: false, stats: false }) => {
   return new Promise((resolve, reject) => {
     if (validatePath(path)) {
       const pathAbsolute = determinateAbsolutePath(path)
@@ -21,10 +22,6 @@ export const mdLinks = (path, option = { validate: false }) => {
       if (ifIsDirectory(pathAbsolute)) {
         if (readaPathDirectory(pathAbsolute).length !== 0) {
           arrayLinks = getLinksofDirectory(pathAbsolute)
-          resolve(arrayLinks)
-          if (getLinksofDirectory(pathAbsolute).length === 0) {
-            reject('No se encontró ningún archivo .md')
-          }
         } else {
           reject('Carpeta vacía')
         }
@@ -36,17 +33,16 @@ export const mdLinks = (path, option = { validate: false }) => {
           reject('La ruta ingresada no es .md')
         }
       }
-      // añadimos el validar links
-      // if (arrayLinks.length !== 0) {
-      //   if (option.validate) {
-      //     validateLinks(arrayLinks)
-      //       .then((data) => {
-      //         resolve(data)
-      //       })
-      //   }
-      // }
+      if (!option.validate && option.stats) {
+        resolve(getStatsLinks(arrayLinks))
+      }
+      if (option.validate && !option.stats) {
+        validateLinks(arrayLinks).then((result) => {
+          resolve(result)
+        })
+      }
+    } else {
+      reject('La ruta ingresada no existe')
     }
   })
 }
-
-// mdLinks('')

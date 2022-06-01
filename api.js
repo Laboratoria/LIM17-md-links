@@ -12,7 +12,7 @@ export const determinateAbsolutePath = (pathRoot) => path.isAbsolute(pathRoot) ?
 export const createAbsolutePath = (pathRoot) => path.resolve(pathRoot)
 
 // Función para comprovar si la ruta existe o no
-export const validatePath = (pathRoot) => fs.existsSync(determinateAbsolutePath(pathRoot))
+export const validatePath = (pathRoot) => fs.existsSync(pathRoot)
 
 // Funciones para saber si el path es directorio o file
 // saber si es file
@@ -48,7 +48,7 @@ export const getLinksFileMD = (pathRoot) => {
       if (foundLinksMd[2].includes('http')) {
         arrayLinks.push({
           href: foundLinksMd[2],
-          text: foundLinksMd[1],
+          text: foundLinksMd[1].slice(0, 50),
           file: pathRoot
         })
       }
@@ -92,12 +92,11 @@ export const getLinksofDirectory = (pathRoot) => {
       }
     } else {
       getLinksofDirectory(newPathDirectory)
-    };
+    }
   }
   )
   return arrayLinks
 }
-
 // para obtener stats de los links
 export const getStatsLinks = (arrayLinks) => {
   const linksUnique = new Set(arrayLinks.map(e => e.href))
@@ -107,4 +106,3 @@ export const getStatsLinks = (arrayLinks) => {
     unique: linksUnique.size
   }
 }
-console.log(getStatsLinks(getLinksFileMD('exampleFileMD.md')))

@@ -7,11 +7,32 @@ const entryArray = process.argv
 // entrada de la ruta
 const path = entryArray[2]
 const option = entryArray[3]
-if (option.includes('--validate')) {
-  mdLinks(path, option)
-    .then((data) => {
-      console.log(data)
-    }).catch((data) => {
-      console.log(data)
+if (entryArray.length === 3) {
+  mdLinks(path, { validate: false, stats: false })
+    .then((result) => {
+      result.forEach(e => {
+        if (e.file !== undefined) {
+          console.log(`${(e.file)} ${chalk.green(e.href)} ${(e.text)}`)
+        }
+      })
     })
+}
+if (entryArray.length === 4) {
+  if (option === '--validate') {
+    mdLinks(path, { validate: true, stats: false })
+      .then((result) => {
+        result.forEach(e => {
+          if (e.href !== undefined) {
+            console.log(`${(e.file)} ${chalk.green(e.href)} ${(e.text)} ${chalk.yellow(e.status)} ${chalk.bold.magenta(e.msg)}`)
+          }
+        })
+      }).catch((error) => console.log(error))
+  }
+
+  if (option === '--stats') {
+    mdLinks(path, { validate: false, stats: true })
+      .then((result) => {
+        console.log(result)
+      })
+  }
 }
