@@ -41,6 +41,22 @@ export const mdLinks = (path, option = { validate: false, stats: false }) => {
           resolve(result)
         })
       }
+      if (option.validate && option.stats) {
+        let brokenLinks = 0
+        const failLinks = validateLinks(arrayLinks)
+          .then((result) => {
+            result.forEach(e => {
+              if (e.msg === 'fail') {
+                brokenLinks++
+              }
+              resolve({
+                ...getStatsLinks(arrayLinks),
+                broken: brokenLinks
+              })
+            })
+          })
+        return failLinks
+      }
     } else {
       reject('La ruta ingresada no existe')
     }

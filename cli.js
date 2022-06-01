@@ -36,3 +36,10 @@ if (entryArray.length === 4) {
       })
   }
 }
+
+if (entryArray.length === 5) {
+  mdLinks(path, { validate: true, stats: true })
+    .then((result) => {
+      console.log(result)
+    })
+}
