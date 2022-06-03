@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 const { mdLinks } = require('./index');
-// const chalk = require('chalk');
+const chalk = require('chalk');
 
 /* const inputArray = process.argv;
 const path = inputArray[2];

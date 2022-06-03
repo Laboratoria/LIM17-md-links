@@ -13,8 +13,8 @@ const {
       let arrayMd =[];
       if(existRoute(converPath)) {
 
-        if(verifyDirectory(converExample)){
-          const arrFile = openedDirectory(converExample);
+        if(verifyDirectory(converPath)){
+          const arrFile = openedDirectory(converPath);
           if (arrFile.lengeth > 0) {
             arrayMd = filterFile (arrFile);
          }else {
@@ -22,16 +22,16 @@ const {
          }
 
          } else {
-           arrayMd = filesMd ([converExample]);
+           arrayMd = filterFile ([converPath]);
          }
          if (arrayMd.length > 0) {
-           const arrLink = links (arrayMd)
-           if (arrLink.length > 0) {
+           const arrLinks = gettinlinks (arrayMd)
+           if (arrLinks.length > 0) {
              if (options,validate) {
-               statusLinks(arrLink)
+               statusLinks(arrLinks)
                .then(response =>resolve (response));
              }else {
-               resolve(arrLink)
+               resolve(arrLinks)
              }
            }else {
              reject(" ⛔️ No hay enlaces, introduce otra ruta.");

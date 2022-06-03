@@ -28,12 +28,15 @@
     "url": "git+https://github.com/JossFranco/LIM017-md-links.git"
   },
   "dependencies": {
-    "chalk": "^5.0.1",
+    "chalk": "^4.1.2",
     "cowsay": "^1.5.0",
     "figlet": "^1.5.2",
+    "filesystem": "^1.0.0",
+    "fs": "^0.0.1-security",
     "jest": "^28.1.0",
-    "node-fetch": "^3.2.4",
-    "npm-cli": "^0.1.0"
+    "node-fetch": "^2.6.7",
+    "npm-cli": "^0.1.0",
+    "path": "^0.12.7"
   },
   "bugs": {
     "url": "https://github.com/JossFranco/LIM017-md-links/issues"
