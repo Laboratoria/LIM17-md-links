@@ -8,14 +8,14 @@ export const validateLinks = (arrayOb) =>{
           element.status = res.status,
           element.message = 'OK'
           return element
-        }else if(400<= res.status){
+        }else{
           element.status = res.status,
           element.message = 'FAIL'
           return element
         }
       })
-      .catch((error)=>{
-          element.status = 500,
+      .catch(()=>{
+          element.status = 500
           element.message = 'FAIL'
           return element
       })

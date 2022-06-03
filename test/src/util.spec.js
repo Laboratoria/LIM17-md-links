@@ -40,14 +40,13 @@ describe ('validateLinks', () => {
       message: 'FAIL'
     }
   ]
-  fetch.mockImplementation(()=>{
+  fetch.mockImplementation(() => Promise.resolve({message:"fail", status:404}));{
     return validateLinks(testForValidate)
     .then((res) => {
-      expect(res).toBe(testValidate);
-    });
-    });
-  });
-  it("Promise rejected' ", () => {
+      expect(res).toEqual(testValidate);
+    })};
+});
+  it("promise rejected' ", () => {
     const testForValidate =  [
       {
       href: 'https://www.youtube.com/watch?v=Lub5qOmY4JQ',

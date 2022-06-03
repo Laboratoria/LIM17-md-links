@@ -30,6 +30,9 @@
   ],
   "author": "Cinthia Velásquez",
   "license": "ISC",
+  "bin":{
+    "mdLinks": "src/cli.js"
+  },
   "bugs": {
     "url": "https://github.com/CinthiaVB/LIM017-md-links/issues"
   },
