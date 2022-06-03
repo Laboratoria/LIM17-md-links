@@ -1,5 +1,6 @@
 /* const { existRoute,convertToAbsolute,verifyDirectory,openedDirectory,filterFile,gettinlinks,statusLinks}= require('../src/md-links');
 
+const { convertToAbsolute} = require('../index');
 
 const routeRelative = "exampleFile";
 const routeAbsolute = "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile";
