@@ -33,6 +33,7 @@ Para obtener ayuda ejecute el comando `md-links --help`
 
 ## Diagrama de flujo
 
+![Diagrama de flujo](./MD-links-Diagram.drawio.svg)
 
 
 ## Demo

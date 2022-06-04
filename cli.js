@@ -42,17 +42,26 @@ const cli = (pathName, options) => {
         .then((res) => console.log(chalk.bgCyan.bold.white(numbersOfLinks(res))))
         .catch((rej) => console.log(chalk.redBright(rej)))
     } else if (options.validate && options.stats) {
-        mdLinks(pathName, argvs.v)
+        mdLinks(pathName, options = {validate:false})
         .then((res) => {
-            console.table(chalk.bgBlue.black(numbersOfLinks(res)), chalk.bgRed.black(brokenLinksFx(res)));
+            console.log(chalk.bgBlue.black(numbersOfLinks(res)))
+           console.log (chalk.bgRed.black(brokenLinksFx(res)));
             
         })
+    } else {
+        console.log(chalk.italic.bgYellow.bold.magenta(' For more information "--help" '))
     }
 
 }
 
-//console.log(mdLinks('./files/folder/folder3'))
+
+// console.log(mdLinks('./files/folder/folder3'))
 
 cli(pathName, argvs)
 
-console.log(argvs);
+//console.log(argvs); 
+
+// console.log(chalk ` CPU: {red ${15}%}
+//     RAM: {green ${200 * 100}%}
+//     DISK: {rgb(255,131,0) ${'algo mas'}%}
+//     `);

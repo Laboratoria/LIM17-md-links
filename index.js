@@ -33,11 +33,10 @@ const mdLinks = (path, options = { validate: true }) => {
             }
         
     })
-
+  
 }
 
-
-
+// console.log(mdLinks('./files/folder/folder3'))
 
 module.exports = {
     mdLinks
