@@ -1,6 +1,7 @@
 import { routeExists, getRouteFileAndDirectory, getLinks } from './api.js'
 import { validateLinks } from './util.js'
 
+/*-----Función para obtener un array de objetos según las opciones {validate:true} y {validate:false}-----*/
 export const mdLinks = (path, options) => {
     const promise = new Promise((resolve, reject) => {
     if(routeExists(path)){

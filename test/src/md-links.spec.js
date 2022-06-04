@@ -68,7 +68,7 @@ test('should return an unvalidated array', () => {
     expect(res).toEqual(arrayFalse);
   })
 });
-test('should return "this file has no links"', () => {
+test('should return a message "this file has no links"', () => {
   return mdLinks(pathThree, optionsTrue).catch((err) => {
     expect(err).toBe('Este archivo no tiene links');
   })

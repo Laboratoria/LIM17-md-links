@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-/*-----Función que devuelve Total y Unique Links-----*/
+/*-----Función para obtener Total y Unique Links-----*/
 export const stats = (arrayObj) => {
   const links = arrayObj.length;
   const totalLinks = arrayObj.map((element) => element.href);
@@ -8,14 +8,14 @@ export const stats = (arrayObj) => {
   return (`${chalk.blueBright("Total:")} ${links} ${chalk.blueBright("\nUnique:")} ${uniqueLinks.size}`);
 };
  
-/*-----Función que devuelve Total, Unique y Broken Links-----*/
+/*-----Función para obtener Total, Unique y Broken Links-----*/
 export const statsAndBroken = (arrayObj) => {
   const brokenLinks = arrayObj.filter((item) => item.status >= 400);
   const totalAndUnique = `${stats(arrayObj)} ${chalk.blueBright("\nBroken:")} ${brokenLinks.length}`;
   return totalAndUnique
 };
 
-/*-----Función para imprimir como string Validate con Option:True-----*/
+/*-----Función para obtener como string Validate con Option:True-----*/
 export const showValidatedLinks = (arrayObj) => {  
   let completeObj = '';
   if(arrayObj.length === 0){
@@ -23,9 +23,7 @@ export const showValidatedLinks = (arrayObj) => {
   } 
   if(arrayObj.length > 0){
     arrayObj.forEach((e) => {
-      console.log('holaa')
-      const appearance = e.message === ('OK'||'ok'||'Ok'||'oK') ? chalk.green(e.message) : chalk.red(e.message);
-      console.log(appearance)
+      const appearance = (e.message === 'OK'|| e.message ==='ok'|| e.message ==='Ok'|| e.message ==='oK') ? chalk.green(e.message) : chalk.red(e.message);
       completeObj += `
       ${chalk.yellow('Link:')} ${e.href}
       ${chalk.yellow('Name:')} ${e.text.substring(0, 50)}
@@ -38,7 +36,7 @@ export const showValidatedLinks = (arrayObj) => {
   return completeObj
 }
 
-/*-----Función para imprimir como string Validate con Option:False-----*/
+/*-----Función para obtener como string Validate con Option:False-----*/
 export const showUnvalidLinks = (arrayObj) => {
   let incompleteObj = ''
   if (arrayObj.length > 0) {
@@ -55,45 +53,16 @@ export const showUnvalidLinks = (arrayObj) => {
   return incompleteObj
 }
 
-// export const broken = (array) => {
-//     const status = array.filter((item) => item.status >= 400);
-//     return (`Broken: ${status.length}`);
-// }
-
-
-const array3 = [
-    {
-      href: 'https://www.youtube.com/watch?v=Lub5qOmY4JQ',
-      text: 'recurso',
-      file: 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\README.md',
-      status: 200,
-      message: 'Ok'
-    },
-    {
-      href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
-      text: 'Funciones — bloques de código reutilizables - MDN',
-      file: 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\README.md',
-      status: 404,
-      message: 'Fail'
-    },
-    // {
-    //   href: 'https://www.youtube.com/watch?v=Lub5qOmY4JQ',
-    //   text: 'recurso',
-    //   file: 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\README.md'
-    // }
-]
-
 // const arrayTrue = [
 //   {
 //     href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions',
 //     text: 'expresiones regulares (`RegExp`)',
 //     file: 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\pruebaFile\\muestra.md',
 //     status: 200,
-//     message: 'OK'
+//     message: 'oK'
 //   }
 // ]
-
-// console.log(stats(array3))
-// console.log(statsAndBroken(array3))
-//console.log(showValidatedLinks(arrayTrue))
-//console.log(showUnvalidLinks(array3))
+// console.log(stats(arrayTrue))
+// console.log(statsAndBroken(arrayTrue))
+// console.log(showValidatedLinks(arrayTrue))
+// console.log(showUnvalidLinks(arrayTrue))
