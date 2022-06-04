@@ -1,31 +1,43 @@
 
 /* eslint-disable semi */
-const utils = require('./utils');
+const { validatingLinks, pathTransformAbs, existenceOfaRoute, linksIntoMdFiles } = require('./utils');
 const chalk = require('chalk');
 
 // /* ---intentando con promesa --- */
 
 
-const mdLinks = (path, options) => new Promise ((resolve, reject) => {
- const absolutePath = utils.pathTransformAbs(path);
- if(utils.existenceOfaRoute(absolutePath)){
-     const linksIntoMdFiles = utils.linksIntoMdFiles(path);
-     if(linksIntoMdFiles === 0) {
-         reject(console.log('error: no hay links')) 
-     } else {
-         if (options.validate === true) {
-            resolve( utils.validatingLinks(linksIntoMdFiles))
-         } else{
-            resolve(linksIntoMdFiles)
-         }
-     }
- } else {
-     reject (console.log(chalk.bold.red('error: no existe la ruta')))
- }
-})
-.then( (response) => {
-    response.map( (promise) => promise.value ? promise.value : promise)
-});
+const mdLinks = (path, options = { validate: true }) => {
+    return new Promise((resolve, reject) => {
+        const absolutePath = pathTransformAbs(path); //covertir a absoluta
+
+         if (existenceOfaRoute(absolutePath)) {
+                const takeLinks = linksIntoMdFiles(absolutePath); // si existe la ruta, entonces, extraer links
+
+                if (takeLinks.length === 0) {
+                    reject(console.log(chalk.bgRedBright.italic(' Error: No se encontraron links en este archivo '))) // si no hay links mostrar msj
+                }
+
+                if (options.validate) {
+                    validatingLinks(takeLinks)
+                    .then(res => console.log(res))
+                    .catch(error => console.log(error))
+
+                     //validar el estado de los links extraídos
+        
+                } else {
+                    resolve(takeLinks);
+                }
+
+            } else {
+                reject(console.log(chalk.bgRedBright.italic(' Error: no existe la ruta ingresada ')))
+            }
+        
+    })
+
+}
+
+
+
 
 module.exports = {
     mdLinks
