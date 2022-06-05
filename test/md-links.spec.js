@@ -1,6 +1,4 @@
-/* const { existRoute,convertToAbsolute,verifyDirectory,openedDirectory,filterFile,gettinlinks,statusLinks}= require('../src/md-links');
-
-const { convertToAbsolute} = require('../index');
+const { existRoute,convertToAbsolute,verifyDirectory,openedDirectory,filterFile,gettinlinks,statusLinks}= require('../src/md-links');
 
 const routeRelative = "exampleFile";
 const routeAbsolute = "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile";
@@ -9,13 +7,14 @@ const folder = "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile
 const file = "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\anotherFolder";
 const notDirectory = "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\README.md";
 const arrayEmpty=[];
-const testing =["C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\anotherFolder\\example.md", 
-"C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\anotherFolder\\file.txt",
- "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\file.txt", 
-"C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\README.md"];
-const testingmd =["C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\anotherFolder\\example.md", 
-"C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\README.md"];
-
+const testing =[
+    "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\anotherFolder\\example.md", 
+    "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\anotherFolder\\file.txt",
+    "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\file.txt",
+    "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\README.md"];
+const testingmd =[
+    "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\anotherFolder\\example.md", 
+    "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\README.md"];
 
 const validate =[
   {
@@ -25,13 +24,7 @@ text:"Markdow",
   }
 ];
 
-const fail = {
-href:"https://developer.mozilla.org/es/docs/Web/HTTP/Caing",
-text:"Markdow",
-file:"C:\Users\Joss\Documents\GitHub\LIM017-md-links\exampleFile\anotherFolder",
-status:"404",
-ok: "fail"
-};
+
 
 describe('convertToAbsolute', () => {
   it('convertToAbsolute', () => {
@@ -63,7 +56,12 @@ it ("retorna false si path no es un directorio",()=>{
     
 describe("openedDirectory",()=>{
   it("Debería abrir un directorio y mostrar una matriz de archivos",()=> {
-expect (openedDirectory(folder)).toEqual(testing);
+expect (openedDirectory(folder)).toEqual([
+    "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\anotherFolder\\example.md",
+ "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\anotherFolder\\file.txt",
+  "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\file.txt",
+   "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\folder.md",
+ "C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\README.md"]);
   });
 });
     
@@ -122,4 +120,4 @@ it("Debe mostrar y vaciar la matriz cuando no hay ningún enlace dentro del arch
 });
 })
 
-  */
+  

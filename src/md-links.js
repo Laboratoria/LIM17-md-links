@@ -1,6 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-const fetch = require('node-fetch');
+const fs = require("fs");
+const path = require("path");
+const fetch = require("node-fetch");
 
 const existRoute = (inputPath) => fs.existsSync(inputPath);
 

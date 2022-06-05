@@ -1,3 +1,5 @@
+
+const chalk = require('chalk');
 const {
   existRoute,
   convertToAbsolute,
@@ -7,7 +9,7 @@ const {
   gettinlinks,
   statusLinks } = require('./md-links');
 
-  const mdLinks = (path, options = {validate: false}) => {
+   const mdLinks = (path, options = {validate:false}) => {
     return new Promise((resolve, reject) => {
       const converPath = convertToAbsolute(path);
       let arrayMd =[];
@@ -15,10 +17,10 @@ const {
 
         if(verifyDirectory(converPath)){
           const arrFile = openedDirectory(converPath);
-          if (arrFile.lengeth > 0) {
+          if (arrFile.length > 0) {
             arrayMd = filterFile (arrFile);
          }else {
-           reject(" ⛔️ El directorio está vacío, ingrese otra ruta.");
+           reject(chalk.bold.redBright(" ⛔️ El directorio está vacío, ingrese otra ruta."));
          }
 
          } else {
@@ -34,15 +36,15 @@ const {
                resolve(arrLinks)
              }
            }else {
-             reject(" ⛔️ No hay enlaces, introduce otra ruta.");
+             reject(chalk.bold.redBright(" ⛔️ No hay enlaces, introduce otra ruta."));
            }
          }else {
-           reject(" ⛔️ No hay archivos .md, ingrese otra ruta.");
+           reject(chalk.bold.redBright("⛔️ No hay archivos .md, ingrese otra ruta."));
          }
         }else {
           reject(" ⛔️ La entrada de ruta no existe, ingrese otra ruta.");
         }
       })
-    }
+    } 
 
     module.exports = {mdLinks}
