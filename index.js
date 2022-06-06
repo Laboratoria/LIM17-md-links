@@ -6,7 +6,7 @@ const chalk = require('chalk');
 // /* ---intentando con promesa --- */
 
 
-const mdLinks = (path, options = { validate: true }) => {
+const mdLinks = (path, options ) => {
     return new Promise((resolve, reject) => {
         const absolutePath = pathTransformAbs(path); //covertir a absoluta
 
@@ -19,8 +19,8 @@ const mdLinks = (path, options = { validate: true }) => {
 
                 if (options.validate) {
                     validatingLinks(takeLinks)
-                    .then(res => console.log(res))
-                    .catch(error => console.log(error))
+                    .then(res =>  resolve (res))
+                    .catch(error => error)
 
                      //validar el estado de los links extraídos
         

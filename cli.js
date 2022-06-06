@@ -5,8 +5,6 @@ const { hideBin } = require('yargs/helpers');
 const { mdLinks } = require('./index');
 const { brokenLinksFx, numbersOfLinks } = require('./utils');
 const chalk = require('chalk');
-const { option, options } = require('yargs');
-
 
 const argvs = yargs(hideBin(process.argv))
     .usage('Usage: md-links <path> [options]')
@@ -32,23 +30,29 @@ const pathName = argvs._.toString();
 
 const cli = (pathName, options) => {
 
-
-    if (options.validate) {
+    if (options.validate && options.stats) {
         mdLinks(pathName, argvs)
-        .then((res) => console.log(res))
-        .catch((rej) => console.log(chalk.redBright(rej)))
+            .then((res) => {
+                console.table(chalk.italic.bgRed.black(brokenLinksFx(res)));
+                console.table(chalk.italic.bgBlue.black(numbersOfLinks(res)))
+            });
+
     } else if (options.stats) {
         mdLinks(pathName, argvs)
-        .then((res) => console.log(chalk.bgCyan.bold.white(numbersOfLinks(res))))
-        .catch((rej) => console.log(chalk.redBright(rej)))
-    } else if (options.validate && options.stats) {
-        mdLinks(pathName, options = {validate:false})
-        .then((res) => {
-            console.log(chalk.bgBlue.black(numbersOfLinks(res)))
-           console.log (chalk.bgRed.black(brokenLinksFx(res)));
-            
-        })
+            .then((res) => console.table(chalk.bgCyan.bold.white(numbersOfLinks(res))))
+            .catch((rej) => console.log(chalk.redBright(rej)))
+    } else if (options.validate) {
+        mdLinks(pathName, argvs)
+            .then((res) => console.log(res))
+            .catch((rej) => console.log(chalk.redBright(rej)))
     } else {
+        mdLinks(pathName, options)
+            .then((res) => {
+                res.forEach(el => {
+                    console.table(chalk`href: {rgb(255,131,0) ${el.href}}\ntext: ${el.text}\nfile: {green ${el.file}}`);
+                });
+            })
+
         console.log(chalk.italic.bgYellow.bold.magenta(' For more information "--help" '))
     }
 
@@ -59,7 +63,6 @@ const cli = (pathName, options) => {
 
 cli(pathName, argvs)
 
-//console.log(argvs); 
 
 // console.log(chalk ` CPU: {red ${15}%}
 //     RAM: {green ${200 * 100}%}

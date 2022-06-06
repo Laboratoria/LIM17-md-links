@@ -110,7 +110,7 @@ const numbersOfLinks = (objWithLinks) => {
 /*  --- para saber cuantos links rotos hay ---  */
 const brokenLinksFx = (objWithLinks) => {
     const broken = objWithLinks.filter(element => element.ok === 'fail')
-    const stats = `${('Broken: ')} ${broken.length}`;
+    const stats = `${('Broken: ')} ${broken.length}  `;
     return stats;
 };
 
