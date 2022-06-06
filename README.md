@@ -19,9 +19,9 @@ interactuar con el sistema en sí, archivos, redes, ...
   md-links <path> [options]
 ```
 
-| cli       | Type     | Description                 |
-| :-------- | :------- | :-------------------------  |
-| `md-links`| `Promise`| **Required**. md-links-tata |
+| cli       | Description                 |
+| :-------- | :-------------------------  |
+| `md-links`| **Required**. md-links-tata |
 
 
 
@@ -137,13 +137,10 @@ Broken: 1
 ## Demo
 
 [Opción validar estado de links](img/validate.png) 
-(img/validate.png)
 
 [Opción para ver valores totales, únicos y rotos de links](img/stats_validate.png)
-(img/stats_validate.png)
 
 [Ingresar una ruta sin escoger opciones](img/validate_false.png)
-(img/validate_false.png)
 
 ## Autora
 
