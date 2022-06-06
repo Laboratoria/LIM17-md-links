@@ -21,7 +21,7 @@ interactuar con el sistema en sí, archivos, redes, ...
 
 | cli       | Type     | Description                 |
 | :-------- | :------- | :-------------------------  |
-| `md-links`| `cli`    | **Required**. md-links-tata |
+| `md-links`| `Promise`| **Required**. md-links-tata |
 
 
 
@@ -45,7 +45,7 @@ Para obtener ayuda ejecute el comando `md-links --help`
 ##### Argumentos
 
 * `path`: Ruta **absoluta** o **relativa** al **archivo** o **directorio**.
-Si la ruta pasada es relativa, debe resolverse como relativa al directorio
+Si la ruta pasada es relativa, se resuelve como relativa al directorio
 desde donde se invoca node - _current working directory_).
 * `options`: Un objeto con **únicamente** la siguiente propiedad:
   - `validate`: Booleano que determina si se desea validar los links
@@ -136,10 +136,9 @@ Broken: 1
 
 ## Demo
 
-![Opción validar estado de links] (./img/validate.png)
-![Opción para ver valores totales, únicos y rotos de links] (./img/stats_validate.png)
-![Ingresar una ruta sin escoger opciones] (./img\validate_false.png)
-
+![Opción validar estado de links](./validate.png)
+![Opción para ver valores totales, únicos y rotos de links](./stats_validatepng)
+![Ingresar una ruta sin escoger opciones](./validate_false.png)
 
 ## Autora
 
