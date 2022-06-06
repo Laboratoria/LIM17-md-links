@@ -1,6 +1,6 @@
 // const axios = require('axios');
 const { default: axios } = require('axios');
-const { pathTransformAbs, isFile, pathExtension, isDirectory, linksIntoMdFiles, validatingLinks } = require('../utils.js');
+const { pathTransformAbs, isFile, pathExtension, isDirectory, linksIntoMdFiles, validatingLinks, validateFileMd } = require('../utils.js');
 const { get } = require('../__mocks__/axios.js');
 jest.mock('axios');
 
@@ -8,7 +8,7 @@ jest.mock('axios');
 const expected = 'C:\\Users\\USER\\Desktop\\laboratoria\\index.js';
 const relativePath = '../index.js';
 const file = 'utils.js';
-const folder = 'file';
+const folder = 'files';
 const routeMD = 'C:\\Users\\USER\\Desktop\\laboratoria\\LIM017-md-links\\files\\folder\\folder3\\archivo2.md';
 const result = [
   {
@@ -81,7 +81,20 @@ describe('isDirectory', () => {
       expect(isDirectory(folder).toBe(true));
     }
   })
-})
+});
+
+describe ('validateFileMd', () => {
+  it('Devolver un array con archivos de tipo .md', () => {
+  
+    expect(validateFileMd(folder)).toEqual([
+      'files\\folder\\archivoFuera.md',
+      'files\\folder\\folder2\\archivo1.md',
+      'files\\folder\\folder3\\archivo2.md',
+      'files\\folder\\folder3\\sinLikns.md'
+    ])
+  })
+});
+
 describe('linksIntoMdFiles', () => {
   it('return an object with a href, text, and file in windows', () => {
 
@@ -128,13 +141,15 @@ describe('validatingLinks', () => {
   });
 });
 
-// describe('validatingLinks', () => {
-//   it( 'retorna un valor de "ok" cuando el links este roto', () => {
-//     validatingLinks(result).then((response) => {
-//     expect(response).toEqual(statusOk);
+describe('validatingLinks', () => {
+  it( 'retorna un valor de "ok" cuando el links este roto', () => {
+    validatingLinks(result).then((response) => {
+    expect(response).toEqual(statusOk);
       
-//     })
-//   });
-// });
+    })
+  });
+});
+
+
 
 

@@ -25,7 +25,7 @@ const argvs = yargs(hideBin(process.argv))
     .alias('h', 'help')
     .argv
 
-// path
+// Ingresamos al elemento '_'  que recibe nuestra ruta y lo convertimos a srting
 const pathName = argvs._.toString();
 
 const cli = (pathName, options) => {
@@ -58,13 +58,4 @@ const cli = (pathName, options) => {
 
 }
 
-
-// console.log(mdLinks('./files/folder/folder3'))
-
 cli(pathName, argvs)
-
-
-// console.log(chalk ` CPU: {red ${15}%}
-//     RAM: {green ${200 * 100}%}
-//     DISK: {rgb(255,131,0) ${'algo mas'}%}
-//     `);

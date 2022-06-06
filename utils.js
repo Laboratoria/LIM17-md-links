@@ -120,4 +120,3 @@ module.exports = {
     readDirectory, isFile, isDirectory, validateFileMd,
     linksIntoMdFiles, validatingLinks, numbersOfLinks, numbersOfLinks, brokenLinksFx
 }
-
