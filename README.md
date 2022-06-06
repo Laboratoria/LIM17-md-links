@@ -136,9 +136,14 @@ Broken: 1
 
 ## Demo
 
-[Opción validar estado de links](img/validate.png)
+[Opción validar estado de links](img/validate.png) 
+(img/validate.png)
+
 [Opción para ver valores totales, únicos y rotos de links](img/stats_validate.png)
+(img/stats_validate.png)
+
 [Ingresar una ruta sin escoger opciones](img/validate_false.png)
+(img/validate_false.png)
 
 ## Autora
 

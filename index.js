@@ -34,9 +34,7 @@ const mdLinks = (path, options ) => {
         
     })
   
-}
-
-// console.log(mdLinks('./files/folder/folder3'))
+};
 
 module.exports = {
     mdLinks
