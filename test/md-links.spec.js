@@ -109,7 +109,28 @@ expect(err).toEqual(error)
 describe("gettinlinks",() =>{
   it("Debería mostrar una matriz con todos los enlaces de los archivos .md",() => {
     const data = [
-    ];
+      {
+        href: 'https://www.youtube.com/watch?v=RqQ1d1qEWlE',
+        text: 'Curso para principiantes de Java Script',
+        file: 'C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\anotherFolder\\example.md'
+      },
+      {
+        href: 'https://www.youtube.com/watch?v=8GTaO9XhA5M',
+        text: 'Java Script en 10 minutos',
+        file: 'C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\anotherFolder\\example.md'
+      },
+      {
+        href: 'https://www.youtube.com/watch?v=FuCiNVP88pc',
+        text: 'Java Script en 5 minutos o más',
+        file: 'C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\anotherFolder\\example.md'
+      },
+      {
+        href: 'https://nodej.org/api/fs.html#fs_fs_readfile_options_callback',
+        text: 'Broken',
+        file: 'C:\\Users\\Joss\\Documents\\GitHub\\LIM017-md-links\\exampleFile\\anotherFolder\\example.md'
+      }
+    ]
+    ;
   expect(gettinlinks(file)).toEqual(data);
   });
 it("Debe mostrar una matriz vacía cuando está vacía", () => {

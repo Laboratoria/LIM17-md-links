@@ -41,10 +41,11 @@ const gettinlinks = (arrPath) => {
   const regExpText = /\[(.*)\]/g;
   const regExpURL = /\(((?:\/|https?:\/\/).*)\)/g;
   let arrLinks = [];
-  if (arrPath.lengeth > 0) {
+  if (arrPath.length > 0) {
     arrPath.forEach((path) => {
       const contents = fs.readFileSync(path, "utf8");
       const arrLinksFile = contents.match(regExp);
+    
       if (arrLinksFile) {
         let arrayDataFile = [];
         arrLinksFile.forEach((link) => {
@@ -57,7 +58,7 @@ const gettinlinks = (arrPath) => {
           };
           arrayDataFile.push(object);
         });
-        arrLinks = arrLinks.concact(arrayDataFile);
+        arrLinks = arrLinks.concat(arrayDataFile);
       }
     });
   }
@@ -67,17 +68,31 @@ const gettinlinks = (arrPath) => {
 };
 
 const statusLinks = (arrLinks) => {
-    const array = arrLinks.map((element) => {
+  const arrPromesas = arrLinks.map((obj) => fetch(obj.href)
+    .then((res) => ({
+      res,
+      href: obj.href,
+      text: obj.text,
+      file: obj.file,
+      status: res.status,
+      ok: res.ok ? 'OK' : 'FAIL',
+    }))
+    .catch(() => 'Existe un problema'));
+  return Promise.all(arrPromesas);
+
+   /* const array = arrLinks.map((element) => {
       const fetchPromise = fetch(element.href)
       .then((response) => {
         const statusCode = response.status;
-        const msg = response.status >= 200 && response.status <= 299 ? response.statusText : 'FAIL';
+        const msg = response.status >= 200 && response.status <= 299 ? 'OK' : 'FAIL';
         return {
           href: element.href,
           text: element.text,
           file: element.file,
           status: statusCode,
           message: msg,
+        
+
         };
       })
       .catch(() => {
@@ -91,7 +106,7 @@ const statusLinks = (arrLinks) => {
       });
       return fetchPromise;
     });
-    return Promise.all(array);
+    return Promise.all(array);*/
   }
 
 module.exports = {

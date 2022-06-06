@@ -17,21 +17,39 @@ const {
 
         if(verifyDirectory(converPath)){
           const arrFile = openedDirectory(converPath);
+        
           if (arrFile.length > 0) {
             arrayMd = filterFile (arrFile);
+           
+            if (arrayMd.length > 0) {
+              const arrLinks = gettinlinks (arrayMd)
+              console.log(arrLinks,"holii")
+              if (arrLinks.length > 0) {
+                if (options.validate) { resolve(
+                  statusLinks(arrLinks)
+                  .then((res) =>res));
+                  
+                }else {
+                  resolve(arrLinks)
+                }
+              }else {
+                reject(chalk.bold.redBright(" ⛔️ No hay enlaces, introduce otra ruta."));
+              }
+            }else {
+              reject(chalk.bold.redBright("⛔️ No hay archivos .md, ingrese otra ruta."));
+            }
          }else {
            reject(chalk.bold.redBright(" ⛔️ El directorio está vacío, ingrese otra ruta."));
          }
 
          } else {
            arrayMd = filterFile ([converPath]);
-         }
-         if (arrayMd.length > 0) {
+           if (arrayMd.length > 0) {
            const arrLinks = gettinlinks (arrayMd)
            if (arrLinks.length > 0) {
-             if (options,validate) {
-               statusLinks(arrLinks)
-               .then(response =>resolve (response));
+            if (options.validate) { resolve(
+              statusLinks(arrLinks)
+              .then((res) =>console.log(res)));
              }else {
                resolve(arrLinks)
              }
@@ -41,6 +59,8 @@ const {
          }else {
            reject(chalk.bold.redBright("⛔️ No hay archivos .md, ingrese otra ruta."));
          }
+         }
+         
         }else {
           reject(" ⛔️ La entrada de ruta no existe, ingrese otra ruta.");
         }

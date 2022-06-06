@@ -19,29 +19,31 @@ const chalk = require('chalk');
         console.error(help);
     }
     
-      else if (args.legenth ===1  && !args.includes("---validate") && !args.includes('--stats')){
+      /*else if (args.legenth ===1  && !args.includes("---validate") && !args.includes('--stats')){
         mdLinks(args[0],false)
         .then(result => {
           result.forEach(res => console.log(`${('href:')} ${(res.href)}\n${('text:')} ${(res.text)}\n${('file:')} ${(res.file)}\n`)) 
-        });
+        });*/
 
-    } else if(args.length === 2 && args.includes('--validate') && !args.includes('--stats')) {
+     else if(args.length === 2 && args.includes('--validate') && !args.includes('--stats')) {
       mdLinks(args[0], true)
      .then((result) =>{
-       result.forEach(res => console.log(`${('href:')} ${(res.href)}\n${('text:')} ${(res.text)}\n${('file:')} ${(res.file)}\n${('status:')} ${(res.status)}\n${('ok:')} ${(res.ok)}\n`))
+       console.log(result)
      })
      .catch(console.error);
+  
 
-    } else if(args.length === 2 && !args.includes('--validate') && args.includes('--stats')){
-      mdLinks(route, false)
+     } else if(args.length === 2 && !args.includes('--validate') && args.includes('--stats')){
+      mdLinks(args[0], true)
       .then((result) =>{
         const unique = [...new Set(result.map((element) => element.href))].length;
         const total = result.length;
         console.log(`${('Total:')} ${(total)}\n${('Unique:')} ${(unique)}`)// Total, Unique
       });
+      
     
-    } else if(args.length === 3 && args.includes('--validate')  && args.includes('--stats')){
-      mdLinks(route, true)
+    }else if(args.length === 3 && args.includes('--validate')  && args.includes('--stats')){
+      mdLinks(args[0], true)
       .then((result) =>{
         const unique = [...new Set(result.map((element) => element.href))].length;
         const total = result.length;const broken = result.filter((element) => element.ok === 'fail').length; 
