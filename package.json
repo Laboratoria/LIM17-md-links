@@ -1,7 +1,7 @@
 {
   "name": "md-links-tata",
   "version": "0.1.0",
-  "description": "md-links un proyecto de extracción de links en formato md",
+  "description": "md-links un proyecto de extracción de links en archivos formato tipo md",
   "devDependencies": {
     "jest": "^28.1.0"
   },
@@ -21,8 +21,8 @@
     "eslint": "^8.15.0",
     "jest": "^28.1.0",
     "marked": "^4.0.16",
-    "node-fetch": "^3.2.4",
-    "test": "^0.6.0"
+    "test": "^0.6.0",
+    "yargs": "^17.5.1"
   },
   "bin": {
     "md-links": "cli.js"
@@ -34,5 +34,13 @@
     "links"
   ],
   "author": "Linda Gómez Olea <lindagomez96@outlook.es>",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LGomez96/LIM017-md-links.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LGomez96/LIM017-md-links/issues"
+  },
+  "homepage": "https://github.com/LGomez96/LIM017-md-links#readme"
 }

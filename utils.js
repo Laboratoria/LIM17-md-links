@@ -17,12 +17,7 @@ const searchFiles = (routes) => fs.readFileSync(routes, 'utf-8');
 
 /*   ---Para comprobar si es un directorio---  */
 
-//  isDirectory() // método que devuelve 'true' si es un directorio, 
-//  luego de llamar a stats que es un objeto
-//  que proporciona info sobre un archivo  o directorio:
-
 const isDirectory = (routes) => fs.statSync(routes).isDirectory();
-
 
 //isFile() método que devuelve un booleano si es un archivo:
 
@@ -76,62 +71,53 @@ const linksIntoMdFiles = (routes) => {
 
 /*  ---función para validar el estado en que se encuentran los links----    */
 const validatingLinks = (objWithLinks) => {
-    // Un arreglo para guardar?
 
-    const urlsArray = objWithLinks.map((link) => axios.get(link.href)
-        .then((response) => {
-        
-            const statusText= ( response.status >= 200 ) && ( response <= 399 ) ? 'ok' : 'fail';
-        
-            return {
-                href: link.href,
-                text: link.text,
-                file: link.file,
-                status: response.status,
-                ok: statusText,
-            }
-        })
-        .catch( () => {
-            
-            return {
-                href: link.href,
-                text: link.text,
-                file: link.file,
-                status: '',
-                ok: 'fail'
-            }
+    const statusLinks = objWithLinks.map(link => {
+        const resultOfValidate = axios.get(link.href)
+            .then((res) => {
+                return {
+                    ...link,
+                    status: res.status,
+                    ok: res.statusText
+                };
+            })
+            .catch((error) => {
+                return {
+                    ...link,
+                    status: error.status,
+                    ok: 'fail'
+                };
 
-        }));
-    // axios hace peticiones al servidor
-return Promise.allSettled(urlsArray).catch( error => console.log(error));
+            });
+        return resultOfValidate;
+    });
 
+    return Promise.all(statusLinks);
+};
+
+/*  ---- para saber cuantos links hay---    */
+const numbersOfLinks = (objWithLinks) => {
+
+    // contar cuantos elementos hay en el array
+    const lengthOfLinks = objWithLinks.length;
+    // crear una colección(solo con las urls) de valores únicos con Set
+    const uniqueLinks = new Set(objWithLinks.map(element => element.href));
+    const stat = `${'Total:  '} ${lengthOfLinks} \n${'Unique: '} ${uniqueLinks.size} `
+    return stat;
 };
 
 
-    /*  ---- para saber cuantos links hay---    */
-     const numbersOfLinks = (objWithLinks) => {
-        
-        // contar cuantos elementos hay en el arrar
-        const lengthOfLinks = objWithLinks.length;
-        // crear una colección(solo con las urls) de valores únicos con Set
-        const uniqueLinks =  new Set( objWithLinks.map(element => element.href));
-        const stats = `${chalk.bold.magenta('Total: ')} ${chalk.magentaBright(lengthOfLinks)} \n${chalk.bold.yellow('Unique: ')}${chalk.bold.yellow(uniqueLinks.size)}`;
-     return stats;
-    };
-
-    /*  --- para saber cuantos links rotos hay ---  */
-    const brokenLinksFx = (objWithLinks) => {
-        const broken = objWithLinks.filter(element => element.ok === 'fail')
-        const stats = `${chalk.bold.red('Broken: ')} ${chalk.bold.red(broken.length)}`;
-        return stats;
-    };
-
-
-
+/*  --- para saber cuantos links rotos hay ---  */
+const brokenLinksFx = (objWithLinks) => {
+    const broken = objWithLinks.filter(element => element.ok === 'fail')
+    const stats = `${('Broken: ')} ${broken.length}  `;
+    return stats;
+};
 
 
 module.exports = {
     existenceOfaRoute, pathTransformAbs, pathExtension, searchFiles,
-    readDirectory, isFile, isDirectory, validateFileMd, 
-    linksIntoMdFiles, validatingLinks, numbersOfLinks, brokenLinksFx,
-};
+    readDirectory, isFile, isDirectory, validateFileMd,
+    linksIntoMdFiles, validatingLinks, numbersOfLinks, numbersOfLinks, brokenLinksFx
+}
+
