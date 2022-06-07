@@ -1,26 +1,18 @@
-# Índice
-
-* [1. ¿Qué es MD-Links?](##1-MDLINKS)
-* [2. Instalación](#2-Instalación)
-* [3. Uso y comandos](#3-Uso-y-Comandos)
-* [4. Dependencias y Herramientas](#4-Librerías-Utilizadas-Herramientas)
-* [5. Autora](#4-Autora)
-
-## MDLINKS
+## MDLinks
 
 Markdown Links es una librería que examina y lee archivos en formato Markdown(.md), además de verificar los links que contenga el archivo .md, permitiendo así obtener un resumen del Total, Unique y Broken Links y el código de estado que se encuentra cada uno de ellos.
 ## Instalación
 
 #### Para utilizar esta librería, previamente deber tener instalado [Node.js](https://nodejs.org/es/). Luego colocar el siguiente comando en su terminal.
 
-```http
+```bash
   $ npm i mdLinks ccvb
 ```
 ## Uso
 
 #### Podrá ejecutar la librería a través de la terminal. La rutas ingresadas pueden encontrarse en un directorio, ser un archivo, ser relativas o absolutas. Además va a recibir los siguientes comandos:
 
-```http
+```bash
   --validate
 ```
 ##### Si pasamos la opción --validate, el módulo debe hacer una petición HTTP para averiguar si el link funciona o no. Si el link resulta en una redirección a una URL que responde ok, entonces consideraremos el link como ok, de lo contrario como fail; he aquí una muestra:
@@ -29,14 +21,14 @@ Markdown Links es una librería que examina y lee archivos en formato Markdown(.
 
 [![validate-Fail.png](https://i.postimg.cc/BbSvTKtR/validate-Fail.png)](https://postimg.cc/MMLxxX7Y)
 
-```http
+```bash
   --stats
 ```
 ##### Si pasamos la opción --stats el output (salida) será un texto con estadísticas básicas sobre los links; he aquí una muestra:
 
 [![stats.png](https://i.postimg.cc/pVCr2q6v/stats.png)](https://postimg.cc/V5SmgBwZ)
 
-```http
+```bash
   --validate --stats || --stats --validate
 ```
 
@@ -45,7 +37,7 @@ Markdown Links es una librería que examina y lee archivos en formato Markdown(.
 [![validate-stats.png](https://i.postimg.cc/L4x4dhJ6/validate-stats.png)](https://postimg.cc/ThWvgdjZ)
 
 #### En caso no recuerde que colocar recibirá una ayuda en la propia terminal, solo debe colocar:
-```http
+```bash
   mdLinks
 ```
 ##### La ayuda se mostrará de la siguiente manera:
