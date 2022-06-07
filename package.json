@@ -1,7 +1,12 @@
 {
-  "name": "md-links",
-  "version": "0.1.0",
+  "name": "md-links-anggie",
+  "version": "1.0.0",
   "engines": {
     "node": ">=14.x"
-  }
+  },
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "node-fetch": "^3.2.5"
+  },
+  "type": "module"
 }
