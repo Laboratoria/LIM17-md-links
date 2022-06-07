@@ -41,7 +41,8 @@ const gettinlinks = (arrPath) => {
   const regExpText = /\[(.*)\]/g;
   const regExpURL = /\(((?:\/|https?:\/\/).*)\)/g;
   let arrLinks = [];
-  if (arrPath.length > 0) {
+  if (arrPath.length > 0 && Array.isArray(arrPath)) {
+   
     arrPath.forEach((path) => {
       const contents = fs.readFileSync(path, "utf8");
       const arrLinksFile = contents.match(regExp);
@@ -68,19 +69,7 @@ const gettinlinks = (arrPath) => {
 };
 
 const statusLinks = (arrLinks) => {
-  const arrPromesas = arrLinks.map((obj) => fetch(obj.href)
-    .then((res) => ({
-      res,
-      href: obj.href,
-      text: obj.text,
-      file: obj.file,
-      status: res.status,
-      ok: res.ok ? 'OK' : 'FAIL',
-    }))
-    .catch(() => 'Existe un problema'));
-  return Promise.all(arrPromesas);
-
-   /* const array = arrLinks.map((element) => {
+  const array = arrLinks.map((element) => {
       const fetchPromise = fetch(element.href)
       .then((response) => {
         const statusCode = response.status;
@@ -90,24 +79,21 @@ const statusLinks = (arrLinks) => {
           text: element.text,
           file: element.file,
           status: statusCode,
-          message: msg,
+          ok: msg,
         
 
         };
       })
-      .catch(() => {
-        return {
-          href: element.href,
-          text: element.text,
-          file: element.file,
-          status: "Failed request",
-          message: 'FAIL',
-        }
-      });
+      .catch(() => ({href: element.href, text: element.text, file: element.file,
+        status: 'Fail: Your request failed', 
+        ok: 'fail',
+      }));
+    
       return fetchPromise;
-    });
-    return Promise.all(array);*/
-  }
+  });
+    return Promise.all(array);
+  
+  };
 
 module.exports = {
   existRoute,

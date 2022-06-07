@@ -1,5 +1,3 @@
-
-const chalk = require('chalk');
 const {
   existRoute,
   convertToAbsolute,
@@ -14,32 +12,27 @@ const {
       const converPath = convertToAbsolute(path);
       let arrayMd =[];
       if(existRoute(converPath)) {
-
-        if(verifyDirectory(converPath)){
+        if(verifyDirectory(converPath)){    
           const arrFile = openedDirectory(converPath);
-        
           if (arrFile.length > 0) {
-            arrayMd = filterFile (arrFile);
-           
+            arrayMd = filterFile (arrFile); 
             if (arrayMd.length > 0) {
               const arrLinks = gettinlinks (arrayMd)
-              console.log(arrLinks,"holii")
               if (arrLinks.length > 0) {
-                if (options.validate) { resolve(
+                if (options.validate) { 
                   statusLinks(arrLinks)
-                  .then((res) =>res));
-                  
+                  .then((res) =>resolve(res));
                 }else {
                   resolve(arrLinks)
                 }
               }else {
-                reject(chalk.bold.redBright(" ⛔️ No hay enlaces, introduce otra ruta."));
+                reject("⛔️ No hay enlaces, introduce otra ruta.");
               }
             }else {
-              reject(chalk.bold.redBright("⛔️ No hay archivos .md, ingrese otra ruta."));
+              reject("⛔️ No hay archivos .md, ingrese otra ruta.");
             }
          }else {
-           reject(chalk.bold.redBright(" ⛔️ El directorio está vacío, ingrese otra ruta."));
+           reject("⛔️ El directorio está vacío, ingrese otra ruta.");
          }
 
          } else {
@@ -47,22 +40,18 @@ const {
            if (arrayMd.length > 0) {
            const arrLinks = gettinlinks (arrayMd)
            if (arrLinks.length > 0) {
-            if (options.validate) { resolve(
+            if (options.validate) { 
               statusLinks(arrLinks)
-              .then((res) =>console.log(res)));
+              .then((res) =>resolve(res));
              }else {
                resolve(arrLinks)
              }
-           }else {
-             reject(chalk.bold.redBright(" ⛔️ No hay enlaces, introduce otra ruta."));
+           }else {reject(" ⛔️ No hay enlaces, introduce otra ruta.");
            }
-         }else {
-           reject(chalk.bold.redBright("⛔️ No hay archivos .md, ingrese otra ruta."));
+         }else {reject("⛔️ No hay archivos .md, ingrese otra ruta.");
          }
-         }
-         
-        }else {
-          reject(" ⛔️ La entrada de ruta no existe, ingrese otra ruta.");
+         }         
+        }else {reject(" ⛔️ La entrada de ruta no existe, ingrese otra ruta.");
         }
       })
     } 
