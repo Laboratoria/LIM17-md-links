@@ -27,8 +27,3 @@ export const mdLinks = (path, options) => {
 })
 return promise
 };
-
-// const route = 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\pruebaFdasdile'
-
-//  mdLinks(route, {validate:true}).then((res) =>{ console.log(res)}).catch((err) => console.log(err));
-// mdLinks(route, {validate:false}).then((res) =>{ console.log(res)}).catch((err) => console.log(err));

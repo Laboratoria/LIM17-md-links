@@ -8,7 +8,6 @@ jest.mock("chalk", () => ({
 }));
 
 const pathOne = 'D:/BOOTCAMP-GITHUB/Repos/LIM017-md-links/pruebaDos.md'
-//const pathWithOk = 'D:/BOOTCAMP-GITHUB/Repos/LIM017-md-links/pruebaFile/muestra.md'
 const pathWithoutLinks = 'D:/BOOTCAMP-GITHUB/Repos/LIM017-md-links/prueba.md'
 const pathNotExist = 'D:/BOOTCAMP-GITHUB/ReposCinthia/LIM017-md-links/prueba.md'
 const pathWithoutFileMd = 'src'
@@ -33,14 +32,6 @@ cyan`
 const resultSix = 'redEste archivo no tiene links'
 const resultSeven = 'redLa ruta ingresada no existe'
 const resultEight = 'redLa ruta no tiene archivos MD'
-// const resultWithOk = `
-//       yellow https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions
-//       yellow expresiones regulares ('RegExp')
-//       yellow D:/BOOTCAMP-GITHUB/Repos/LIM017-md-links/pruebaFile/muestra.md
-//       yellow 200
-//       yellow green
-//       `
-
 
 describe('showSummary', () => {
     it("should return the five properties(Link, Name, Path, Status and Message) with FAIL", () => {
@@ -50,13 +41,6 @@ describe('showSummary', () => {
     });
   });
 
-// describe('showSummary', () => {
-//     it("should return the five properties(Link, Name, Path, Status and Message) with OK", () => {
-//       return showSummary(pathWithOk, '--validate').then((err)=>{
-//         expect(err).toBe(resultWithOk)
-//       });
-//     });
-//   });
 describe('showSummary', () => {
     it("should return Total and Unique Links", () => {
       return showSummary(pathOne, '--stats').then((res)=>{

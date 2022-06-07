@@ -1,11 +1,3 @@
-# Índice
-
-* [1. ¿Qué es MD Links?](#1-MDLinks)
-* [2. Instalación](#2-Instalación)
-* [3. Uso y comandos](#3-Uso-y-Comandos)
-* [4. Dependencias y Herramientas](#4-Librerías-Utilizadas-Herramientas)
-* [5. Autora](#4-Autora)
-
 ## MDLinks
 
 Markdown Links es una librería que examina y lee archivos en formato Markdown(.md), además de verificar los links que contenga el archivo .md, permitiendo así obtener un resumen del Total, Unique y Broken Links y el código de estado que se encuentra cada uno de ellos.

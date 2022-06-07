@@ -16,9 +16,6 @@ export const readFile = (pathRoute) => fs.readFileSync(pathRoute, "utf8")
 /*-----Función para determinar si es un archivo-----*/
 export const isFile = (pathRoute) => fs.statSync(pathRoute).isFile();
 
-/*-----Función para determinar si es un directorio-----
-export const isDirectory = (pathRoute) => fs.statSync(pathRoute).isDirectory();*/
-
 /*-----Función para leer un directorio-----*/
 export const readDirectory = (pathRoute) => fs.readdirSync(pathRoute);
 

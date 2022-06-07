@@ -7,13 +7,20 @@ import {
   stats,
   statsAndBroken,
 } from "../src/statistics.js";
-//Capturando argumentos de la línea de comando
+
+/*-----Capturando argumentos de la línea de comando-----*/
 const [,, ...args] = process.argv;
+
+/*-----Indicando posición [0] de la línea de comando-----*/
 const pathToEvaluate = args[0];
+
+/*-----Creando array vacío, recorriendo longitud de la línea de comando y agregando la posición desde [1] al array vacío-----*/
 const inputPos = [];
 for (let i = 1; i < args.length; i++) {
   inputPos.push(args[i]);
 }
+
+/*-----Convirtiendo a string el array(para las opciones)-----*/
 const newInputPos = inputPos.join(' ');
 
 const help = `${chalk.green(
@@ -58,6 +65,3 @@ if (pathToEvaluate === undefined) {
     .then((response) => console.log(response))
     .catch((err) => console.log(err));
 }
-
-// const path = 'D:/BOOTCAMP-GITHUB/Repos/LIM017-md-links/pruebsssa.md'
-// showSummary(path, '--validate').then((res) =>{ console.log(res)}).catch((err) => console.log("err"))

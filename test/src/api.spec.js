@@ -1,4 +1,4 @@
-import {routeExists, isAbsolute, convertToAbsolute, readFile, isFile, /*isDirectory*/ readDirectory, pullExtension, getRouteFileAndDirectory, getLinks} from '../../src/api.js'
+import {routeExists, isAbsolute, convertToAbsolute, readFile, isFile, readDirectory, pullExtension, getRouteFileAndDirectory, getLinks} from '../../src/api.js'
 
 const testRouteAbsolute = 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\prueba.md'
 const testRouteExists = 'D:\\BOOTCAMP-GITHUB\\ReposCinthia\\LIM017-md-links'
@@ -56,12 +56,6 @@ describe('isFile', () => {
     expect (isFile(testDirectory)).toBe(false);
   });
 });
-
-// describe('isDirectory', () => {
-//   it('should be a directory', () => {
-//     expect (typeof isDirectory(testRouteAbsolute)).toBe('boolean');
-//   });
-// });
 
 describe('readDirectory', () => {
   it('should read a directory', () => {

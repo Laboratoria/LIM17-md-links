@@ -22,7 +22,7 @@ export const validateLinks = (arrayOb) =>{
       })
     )
     return Promise.all(arrayValidateLinks)
- }
+}
 
 // const array1 = [  {
 //     href: 'https://www.youtube.com/watch?v=Lub5qOmY4JQ',
