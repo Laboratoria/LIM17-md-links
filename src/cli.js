@@ -17,7 +17,6 @@ const chalk = require('chalk');
         console.error(help);
     }
     
-  
      else if(args.length === 2 && args.includes('--validate')) {
       mdLinks(args[0], {validate:true})
       .then((result) =>{

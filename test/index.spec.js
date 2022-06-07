@@ -1,6 +1,5 @@
 const{mdLinks }=require('../src/index');
 
-const fetch = jest.createMockFromModule('node-fetch');
 
 const error=" ⛔️ La entrada de ruta no existe, ingrese otra ruta.";
 const pathError = "C:\\Users\\Joss\\Documents\\GitHub\\exampleFile";
