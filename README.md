@@ -1,6 +1,6 @@
 # Índice
 
-* [1. ¿Qué es MD Links?](#1-MDLinks)
+* [1. Preámbulo](##1-MDLINKS)
 * [2. Instalación](#2-Instalación)
 * [3. Uso y comandos](#3-Uso-y-Comandos)
 * [4. Dependencias y Herramientas](#4-Librerías-Utilizadas-Herramientas)
@@ -24,27 +24,28 @@ Markdown Links es una librería que examina y lee archivos en formato Markdown(.
   --validate
 ```
 ##### Si pasamos la opción --validate, el módulo debe hacer una petición HTTP para averiguar si el link funciona o no. Si el link resulta en una redirección a una URL que responde ok, entonces consideraremos el link como ok, de lo contrario como fail; he aquí una muestra:
-(Aquí va las fotos)
+[![validate-Ok.png](https://i.postimg.cc/kMv62nDk/validate-Ok.png)](https://postimg.cc/YjjqVB63)
+[![validate-Fail.png](https://i.postimg.cc/BbSvTKtR/validate-Fail.png)](https://postimg.cc/MMLxxX7Y)
 
 ```http
   --stats
 ```
 ##### Si pasamos la opción --stats el output (salida) será un texto con estadísticas básicas sobre los links; he aquí una muestra:
-(Aquí va la foto)
+[![stats.png](https://i.postimg.cc/pVCr2q6v/stats.png)](https://postimg.cc/V5SmgBwZ)
 
 ```http
   --validate --stats || --stats --validate
 ```
 
 ##### Si pasamos ambas opciones --stats y --validate (o viceversa) se obtendrá estadísticas que necesiten de los resultados de la validación; he aquí uana muestra:
-(Aquí va la foto)
+[![validate-stats.png](https://i.postimg.cc/L4x4dhJ6/validate-stats.png)](https://postimg.cc/ThWvgdjZ)
 
 #### En caso no recuerde que colocar recibirá una ayuda en la propia terminal, solo debe colocar:
 ```http
   mdLinks
 ```
 ##### La ayuda se mostrará de la siguiente manera:
-(Aquí va la foto)
+[![help.png](https://i.postimg.cc/k5PqNbpw/help.png)](https://postimg.cc/LJDc2nRZ)
 
 ## Dependencias y Herramientas
 
@@ -56,7 +57,7 @@ Markdown Links es una librería que examina y lee archivos en formato Markdown(.
  - [Babel](https://babeljs.io/setup#installation)
  - [A guide to creating a NodeJS command-line package](https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e)
  - [Tú, yo y package.json](https://medium.com/noders/t%C3%BA-yo-y-package-json-9553929fb2e3)
- - [CommonJS vs ES Modules]([Node.js](https://nodejs.org/es/))
+ - [CommonJS vs ES Modules](https://lenguajejs.com/automatizadores/introduccion/commonjs-vs-es-modules/)
 
 ## Autora
 
