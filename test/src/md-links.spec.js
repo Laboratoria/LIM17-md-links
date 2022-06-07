@@ -1,6 +1,9 @@
 import {mdLinks } from '../../src/md-links.js'
 import fetch from 'node-fetch'
 jest.mock('node-fetch')
+jest.mock("chalk", () => ({
+  red: jest.fn(() => "red"),
+}));
 
 const path = 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\pruebaFile\\muestra.md'
 const pathTwo = 'pruebaDos.md'
@@ -70,16 +73,16 @@ test('should return an unvalidated array', () => {
 });
 test('should return a message "this file has no links"', () => {
   return mdLinks(pathThree, optionsTrue).catch((err) => {
-    expect(err).toBe('Este archivo no tiene links');
+    expect(err).toBe('redEste archivo no tiene links');
   })
 });
 test('should return a message "path has no MD files"', () => {
   return mdLinks(pathFour, optionsTrue).catch((err) => {
-    expect(err).toBe('La ruta no tiene archivos MD');
+    expect(err).toBe('redLa ruta no tiene archivos MD');
   })
 });
 test('should return a message "path entered does not exist"', () => {
   return mdLinks(pathFive, optionsTrue).catch((err) => {
-    expect(err).toBe('La ruta ingresada no existe');
+    expect(err).toBe('redLa ruta ingresada no existe');
   })
 });

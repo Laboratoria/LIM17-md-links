@@ -59,10 +59,10 @@ export const showUnvalidLinks = (arrayObj) => {
 //     text: 'expresiones regulares (`RegExp`)',
 //     file: 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\pruebaFile\\muestra.md',
 //     status: 200,
-//     message: 'oK'
+//     message: 'OK'
 //   }
 // ]
 // console.log(stats(arrayTrue))
-// console.log(statsAndBroken(arrayTrue))
-// console.log(showValidatedLinks(arrayTrue))
-// console.log(showUnvalidLinks(arrayTrue))
+//console.log(statsAndBroken(arrayTrue))
+//console.log(showValidatedLinks(arrayTrue))
+//console.log(showUnvalidLinks(arrayTrue))

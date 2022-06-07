@@ -24,13 +24,13 @@ export const validateLinks = (arrayOb) =>{
     return Promise.all(arrayValidateLinks)
  }
 
-const array1 = [  {
-    href: 'https://www.youtube.com/watch?v=Lub5qOmY4JQ',
-    text: 'recurso',
-    file: 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\README.md'
-  }
-]
+// const array1 = [  {
+//     href: 'https://www.youtube.com/watch?v=Lub5qOmY4JQ',
+//     text: 'recurso',
+//     file: 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\README.md'
+//   }
+// ]
 
-validateLinks(array1).then((res) => {
-    console.log(res)
-  });
+// validateLinks(array1).then((res) => {
+//     console.log(res)
+//   });

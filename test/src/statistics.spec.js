@@ -1,5 +1,4 @@
 import {stats, statsAndBroken, showValidatedLinks, showUnvalidLinks} from '../../src/statistics.js'
-
 jest.mock("chalk", () => ({
   blueBright: jest.fn(() => "blueBright"),
   green: jest.fn(() => "green"),

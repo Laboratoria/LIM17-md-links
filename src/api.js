@@ -64,14 +64,14 @@ export const getLinks = (arrayFileMd) =>{
 return arrayContainerObj
 }
 
-// const route = 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\src\\cli.js'
+// const route = 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\pruebaFile'
 // const route1 = [
 //   'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\pruebaFile\\muestra.md',
 //   'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\pruebaFile\\muestraTwo.md',
 //   'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\pruebaFile\\pruebaDirectorio\\file.md'
 // ]
 
-//console.log(routeExists(route))
+// console.log(routeExists(route))
 // console.log(pathAbsolute(route))
 // console.log(convertToAbsolute(route))
 // console.log(readFile(route))

@@ -1,5 +1,6 @@
 import { routeExists, getRouteFileAndDirectory, getLinks } from './api.js'
 import { validateLinks } from './util.js'
+import chalk from 'chalk';
 
 /*-----Función para obtener un array de objetos según las opciones {validate:true} y {validate:false}-----*/
 export const mdLinks = (path, options) => {
@@ -15,19 +16,19 @@ export const mdLinks = (path, options) => {
                 resolve(file)
                 }
             }else{
-                reject ('Este archivo no tiene links')
+                reject (chalk.red('ERROR: ') + 'Este archivo no tiene links')
             }
         }else{
-            reject ('La ruta no tiene archivos MD')
+            reject (chalk.red('ERROR: ') + 'La ruta no tiene archivos MD')
         }
     }else{
-        reject ('La ruta ingresada no existe')
+        reject (chalk.red('ERROR: ') + 'La ruta ingresada no existe')
     }
 })
 return promise
 };
 
-// const route = 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\pruebaFile'
+// const route = 'D:\\BOOTCAMP-GITHUB\\Repos\\LIM017-md-links\\pruebaFdasdile'
 
-// mdLinks(route, {validate:true}).then((res) =>{ console.log(res)}).catch((err) => console.log(err));
+//  mdLinks(route, {validate:true}).then((res) =>{ console.log(res)}).catch((err) => console.log(err));
 // mdLinks(route, {validate:false}).then((res) =>{ console.log(res)}).catch((err) => console.log(err));
