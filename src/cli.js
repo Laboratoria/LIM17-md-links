@@ -20,7 +20,7 @@ const chalk = require('chalk');
      else if(args.length === 2 && args.includes('--validate')) {
       mdLinks(args[0], {validate:true})
       .then((result) =>{
-        result.forEach(element => console.log(`${('href:')} ${(element.href)}\n${('text:')} ${(element.text)}\n${('file:')} ${(element.file)}\n${('status:')} ${(element.status)}\n${('ok:')} ${(element.ok)}\n`))
+        result.forEach(element => console.log(chalk.bold.blueBright`${('href:')} ${(element.href)})\n${('text:')} ${(element.text)}\n${('file:')} ${(element.file)}\n${('status:')} ${(element.status)}\n${('ok:')} ${(element.ok)}\n`))
       })//href, text, file, status, ok
       .catch(console.error);
   
