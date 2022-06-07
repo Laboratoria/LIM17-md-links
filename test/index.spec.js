@@ -111,4 +111,4 @@ const objData =[
         expect(err).toBe(" ⛔️ La entrada de ruta no existe, ingrese otra ruta.");
       });
     });
-  //'exampleFile\folder.md'
+  
