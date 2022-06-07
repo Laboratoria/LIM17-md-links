@@ -13,6 +13,6 @@ function mdBig (path){
     return'la ruta no existe';
   } 
 };
+//console.log(mdBig(path));
 
 
-console.log(mdBig(path));
