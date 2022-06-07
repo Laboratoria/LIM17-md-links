@@ -1,10 +1,10 @@
 # Índice
 
-* [1. ¿Qué es MD Links?](#1-MDLinks)
-* [2. Instalación](#2-Instalación)
-* [3. Uso y comandos](#3-Uso-y-Comandos)
-* [4. Dependencias y Herramientas](#4-Librerías-Utilizadas-Herramientas)
-* [5. Autora](#4-Autora)
+* [1. ¿Qué es MD Links?](##1-MDLinks)
+* [2. Instalación](##2-Instalación)
+* [3. Uso y comandos](##3-Uso-y-Comandos)
+* [4. Dependencias y Herramientas](##4-Librerías-Utilizadas-Herramientas)
+* [5. Autora](##4-Autora)
 
 ## MDLINKS
 
