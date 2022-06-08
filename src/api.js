@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const marked = require('marked');
+const fetch=require('node-fetch');
 
 //funcion que convierte la ruta en absoluta
 const absoluteroute = (route) =>path.isAbsolute(route) ? route : path.resolve(route);
@@ -19,13 +20,17 @@ const markdExt = (route) => path.extname(route);
 const readDirectory= (route) => fs.readdirSync(route);
 //leer el archivo
 const readingFile = (route) => fs.readFileSync(route, 'utf8');
+const readFile= fs.readFile('./README.md','utf8',(err,contenido) =>{
+  if(err)throw err
+  return(contenido)
+  })
 //unir dos rutas 
 const doublePath= (route) => {
 return readDirectory(route).map((elemento)=> path.join(route, elemento));}
 //función para obtener los files .md
 const mdRoute= (route) => {
      let totalArray= [];
-    const pathAbsolute= absolutePath(route);
+    const pathAbsolute= absoluteroute(route);
     if(verifyIsFile(pathAbsolute) && markdExt(pathAbsolute)=== '.md'){
         totalArray.push(pathAbsolute);
     } else if(isDirectory(pathAbsolute)){
@@ -46,8 +51,8 @@ const getLinks = (route) => {
      const md= readingFile(file);
      renderer.link = (href,title,text) => {
        let linksResult= {
-          href: href, // url encontradas
-          text: text, //Texto que aparecía dentro del link (<a>)
+          href: href, // url 
+          text: text, //Texto 
           file: file, //Ruta del archivo donde se encontró el link.
         }
         theLinks.push(linksResult)
@@ -57,8 +62,31 @@ const getLinks = (route) => {
     });
     return theLinks
   }
+  
+// valida la url
+const getLinksStatus = (arrLinks) => {
+  const statusOfLinks = arrLinks.map((element) => 
+   fetch(element)
+   .then((res)=>{
+        element.status = res.status,
+        element.message= (res.status >= 200) && (res.status <= 399) ? 'ok' :'fail';
+        return element;
+      })
+   .catch((error) => {
+          return {
+          href: element.href,
+          text: element.text,
+          file: element.file,
+          status: 'Not found'+ error,
+          message: 'fail'
+     }      
+    })
+  )
+ return Promise.all(statusOfLinks);
+}
+//const statusLink = getLinksStatus(getLinks('C:/Users/Usuario/Documents/GitHub/LIM017-md-links/md-link'));
+//statusLink.then( res => console.log(res)).catch( error => console.log(error));
 
-console.log(getLinks('C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link\\links.md'))
 module.exports = {
     routeExist,
     absoluteroute,
@@ -69,7 +97,6 @@ module.exports = {
     doublePath,
     mdRoute,
     readingFile,
+    getLinksStatus,
+    getLinks,
     };
-
-
-

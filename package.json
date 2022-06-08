@@ -11,7 +11,7 @@
     "@laboratoria/curriculum-parser": "github:Laboratoria/course-parser",
     "jest": "^28.1.0",
     "marked": "^4.0.16",
-    "node-fetch": "^3.2.5"
+    "node-fetch": "^2.6.7"
   },
   "description": "Esta es una app para identificar Links markdown y verificar si sirven o son fallidos.",
   "main": "index.js",
