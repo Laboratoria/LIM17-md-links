@@ -2,6 +2,7 @@ const fs = require('fs'); // Módulo que nos permita interactuar con directorios
 const path = require('path'); // Módulo que nos permite saber el tipo de extensión de un archivo
 const marked = require('marked');
 const colors = require('colors'); // Módulo que da color a los comandos de la terminal
+const fetch = require('node-fetch');
 colors.enable();
 // Convertir a una ruta en absoluta
 const absolutePath = (route) => (path.isAbsolute(route)) ? route : path.resolve(route);
@@ -44,7 +45,9 @@ const searchDirectoryWithFilesMD = (route) => {
     });
     }
     else{
-        return 'No exists directory or not contain MD files'
+        console.log('No exists directory or not contain MD files')
+        return false
+        
         }
     return arrayFilesMD
     };
@@ -55,8 +58,7 @@ const searchLinksInFilesMD = (route) => {
     const renderer = new marked.Renderer();
     let arrayLinks = [];
      searchDirectoryWithFilesMD(route).forEach((file) => {
-        const readFileMD = readFile(file);
-            renderer.link  = (href, title, text) => {
+           renderer.link  = (href, title, text) => {
             let linksResult = {
                 href: href,
                 text: text,
@@ -65,11 +67,37 @@ const searchLinksInFilesMD = (route) => {
             arrayLinks.push(linksResult)
         }
             marked.use({ renderer });
-            marked.parse(readFileMD);
+            marked.parse(readFile(file));
         });
         return arrayLinks
 };
-console.log(searchLinksInFilesMD('C:\\Users\\USER\\Desktop\\LIM017-md-links\\prueba\\prueba.md'))
+//console.log(searchLinksInFilesMD('C:\\Users\\USER\\Desktop\\LIM017-md-links\\prueba\\prueba.md'))
+
+// Validar el estado de los links
+const getLinksStatus = (links) => {
+    const statusLinks = links.map((element) => 
+    fetch(element)
+    .then((response) => {
+           element.status = response.status,
+           element.message = (response.status >= 200) && (response.status <= 399) ? 'Ok' : 'Fail';
+            return element;
+          
+        })
+    .catch((error) => {
+        return {
+            href: element.href,
+            text: element.text,
+            file: element.file,
+            status: 'Not found' + error,
+            message: 'Fail'
+        };
+    })
+    );
+    return Promise.all(statusLinks);
+};
+
+// const statusLinkMD = getLinksStatus(searchLinksInFilesMD('C:/Users/USER/Desktop/LIM017-md-links/prueba/prueba.md'));
+// statusLinkMD.then( res => console.log(res)).catch( error => console.log(error));
 
 module.exports = {absolutePath, pathExists, isDirectory, isFile, extFile, readDir, readFile, joinTwoPaths,
-                  searchDirectoryWithFilesMD};
+                  searchDirectoryWithFilesMD, searchLinksInFilesMD, getLinksStatus };
