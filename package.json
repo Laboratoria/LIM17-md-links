@@ -28,10 +28,13 @@
     "md-links": "cli.js"
   },
   "keywords": [
-    "node",
+    "nodeJs",
     "jest",
     "markdown",
-    "links"
+    "links",
+    "axios",
+    "chalk",
+    "yargs"
   ],
   "author": "Linda Gómez Olea <lindagomez96@outlook.es>",
   "license": "MIT",

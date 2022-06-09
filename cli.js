@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const yargs = require('yargs');
-const { hideBin } = require('yargs/helpers');
+const { hideBin } = require(c);
 const { mdLinks } = require('./index');
 const { brokenLinksFx, numbersOfLinks } = require('./utils');
 const chalk = require('chalk');
@@ -53,7 +53,7 @@ const cli = (pathName, options) => {
                 });
             })
 
-        console.log(chalk.italic.bgYellow.bold.magenta(' For more information "--help" '))
+        console.info(chalk.italic.bgYellow.bold.magenta(' For more information "--help" '))
     }
 
 }
