@@ -20,10 +20,6 @@ const markdExt = (route) => path.extname(route);
 const readDirectory= (route) => fs.readdirSync(route);
 //leer el archivo
 const readingFile = (route) => fs.readFileSync(route, 'utf8');
-const readFile= fs.readFile('./README.md','utf8',(err,contenido) =>{
-  if(err)throw err
-  return(contenido)
-  })
 //unir dos rutas 
 const doublePath= (route) => {
 return readDirectory(route).map((elemento)=> path.join(route, elemento));}
@@ -45,7 +41,7 @@ const mdRoute= (route) => {
 // *  Función para extraer los links de un archivo .md, devuelve array de objetos
 const getLinks = (route) => {
     const renderer = new marked.Renderer();
-    console.log(renderer)
+   // console.log(renderer)
     let theLinks= [];
     mdRoute(route).forEach((file)=> {
      const md= readingFile(file);

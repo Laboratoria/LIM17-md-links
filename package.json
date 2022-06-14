@@ -7,8 +7,14 @@
   "scripts": {
     "test": "jest --coverage"
   },
+  "bin": {
+    "md-links": "./src/cli.js"
+  },
   "dependencies": {
     "@laboratoria/curriculum-parser": "github:Laboratoria/course-parser",
+    "chalk": "^5.0.1",
+    "colors": "^1.4.0",
+    "inquire": "^0.4.8",
     "jest": "^28.1.0",
     "marked": "^4.0.16",
     "node-fetch": "^2.6.7"

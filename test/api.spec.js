@@ -1,4 +1,5 @@
 
+const fetch = jest.createMockFromModule('node-fetch');
 const path = require('path');
 const fs = require('fs');
 const {
@@ -19,6 +20,7 @@ const {
    const routeDirectory = path.resolve('C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link');
    const files= ['links.md', 'links2.md', 'links3.md'];
    const urlPr= 'https://www.oxfordlearnersdictionaries.com/';
+   const routeDirectory2= path.resolve('C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link\\links.md');
    const routesFiles = [
     path.resolve('./md-link/links.md'),
     path.resolve('./md-link/links2.md'),
@@ -30,63 +32,21 @@ const {
         'C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link\\links3.md'
       ]
 const routeFile= 'C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link\\links.md';
-   const links= ('C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link');
-   const markdlinkstest=[
-    {
-      href: 'https://mail.google.com/mail/u/0/#inbox',
-      text: 'https://mail.google.com/mail/u/0/#inbox',
-      file: 'C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link\\links 3.md',
-      
-    },
-    {
-      href: 'https://regexr.com/',
-      text: 'https://regexr.com/',
-      file: 'C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link\\links 3.md',
-    
-    },
-    {
+   const markdlinkstest={
       href: 'https://www.oxfordlearnersdictionaries.com/',
       text: 'https://www.oxfordlearnersdictionaries.com/',
       file: 'C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link\\links.md',
      
-    },
-    {
-      href: 'https://www.codewars.com/dashboard',
-      text: 'https://www.codewars.com/dashboard',
-      file: 'C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link\\links2.md',
-      
-    }
-  ]
-   const mdLinksWithStatus =[
-    {
-      href: 'https://mail.google.com/mail/u/0/#inbox',
-      text: 'https://mail.google.com/mail/u/0/#inbox',
-      file: 'C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link\\links 3.md',
-      status: 200,
-      message: 'ok'
-    },
-    {
-      href: 'https://regexr.com/',
-      text: 'https://regexr.com/',
-      file: 'C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link\\links 3.md',
-      status: 200,
-      message: 'ok'
-    },
-    {
+    };
+  
+  
+   const mdLinksWithStatus ={
       href: 'https://www.oxfordlearnersdictionaries.com/',
       text: 'https://www.oxfordlearnersdictionaries.com/',
       file: 'C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link\\links.md',
       status: 200,
       message: 'ok'
-    },
-    {
-      href: 'https://www.codewars.com/dashboard',
-      text: 'https://www.codewars.com/dashboard',
-      file: 'C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link\\links2.md',
-      status: 200,
-      message: 'ok'
-    }
-  ]
+    };
 
   describe('routeExist', () => {
     it('retorna una extensión, ejemplo .txt , .md', () => {
@@ -143,13 +103,14 @@ const routeFile= 'C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-lin
   it('Retorna false al no encontrar archivos MD', () => {
     expect(mdRoute('C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\src\\api.js')).toBe(false);
   });
-  /*describe ('getLinksStatus', () => {
-    it('retorna el mismo array de getLinks, pero con el status del link', () =>{
-        return expect(getLinksStatus(routesFiles)).resolves.toEqual(mdLinksWithStatus)
-    });
-  });*/
-  /*describe('getLinks', () => {
+  
+  describe('getLinks', () => {
     it(' solo archivos .md qconlinks con las propiedades de los mismos', () => {
-      expect(getLinks(routeDirectory)).toEqual(markdlinkstest)
+      expect(getLinks(routeDirectory2)).toEqual([markdlinkstest])
     });
-  });*/
+  });
+  describe ('getLinksStatus', () => {
+    it('retorna el mismo array de getLinks, pero con el status del link', () =>{
+        return expect(getLinksStatus([markdlinkstest])).resolves.toEqual([mdLinksWithStatus])
+    });
+  });
