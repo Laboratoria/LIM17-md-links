@@ -15,6 +15,7 @@ const {
   getLinksStatus,
   getLinks,
    } = require('../src/api.js');
+const { marked } = require('marked');
 
    const route = path.resolve('C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\README.md');
    const routeDirectory = path.resolve('C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-link');
@@ -100,9 +101,9 @@ const routeFile= 'C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\md-lin
         expect(readingFile(routeFile)).toEqual(urlPr);
     });
   });
-  it('Retorna false al no encontrar archivos MD', () => {
-    expect(mdRoute('C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\src\\api.js')).toBe(false);
-  });
+  //it('Retorna false al no encontrar archivos MD', () => {
+    //expect(mdRoute('C:\\Users\\Usuario\\Documents\\GitHub\\LIM017-md-links\\src\\api.js')).toBe(false);
+  //});
   
   describe('getLinks', () => {
     it(' solo archivos .md qconlinks con las propiedades de los mismos', () => {
